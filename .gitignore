@@ -71,3 +71,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 RunGame_dangomusi/Library/
 RunGame_dangomusi/Temp/
+RunGame_dangomusi/obj/Debug/
