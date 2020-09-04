@@ -161,10 +161,10 @@ namespace RunGame.Stage
                 // 'W'キーが押された場合はジャンプ処理
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
-                    IsDash = false;
-                    rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-                    // ジャンプ状態に設定
-                    isGrounded = false;
+                    //IsDash = false;
+                    //rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                    //// ジャンプ状態に設定
+                    //isGrounded = false;
                 }
                 else
                 {
