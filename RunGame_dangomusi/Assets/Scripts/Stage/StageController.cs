@@ -34,44 +34,44 @@ namespace RunGame.Stage
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(BreakTilemap(brokenTilemap));
+            //StartCoroutine(BreakTilemap(brokenTilemap));
         }
 
         /// <summary>
         /// 指定したTilemapを崩壊させます。
         /// </summary>
         /// <param name="tilemap">崩壊させたいTilemap</param>
-        private IEnumerator BreakTilemap(Tilemap tilemap)
-        {
-            // 崩壊開始までのディレイ
-            yield return new WaitForSeconds(startDelay);
+        //private IEnumerator BreakTilemap(Tilemap tilemap)
+        //{
+        //    // 崩壊開始までのディレイ
+        //    yield return new WaitForSeconds(startDelay);
 
-            var position = Vector3Int.zero;
-            var cellBounds = tilemap.cellBounds;
+        //    var position = Vector3Int.zero;
+        //    var cellBounds = tilemap.cellBounds;
 
-            for (int x = cellBounds.xMin; x <= cellBounds.xMax; x++)
-            {
-                for (int y = cellBounds.yMin; y <= cellBounds.yMax; y++)
-                {
-                    // セルの位置
-                    position.x = x;
-                    position.y = y;
-                    // セル位置のタイルを取得
-                    var tile = tilemap.GetTile(position);
-                    // タイルの存在確認
-                    if (tile != null)
-                    {
-                        // セルのワールド座標を取得
-                        var worldPosition = tilemap.GetCellCenterWorld(position);
-                        // Tilemapからタイルを削除
-                        tilemap.SetTile(position, null);
-                        // 崩壊タイルを生成
-                        var brokenTile = Instantiate(
-                            brokenTilePrefab, worldPosition, brokenTilePrefab.transform.rotation);
-                    }
-                }
-                yield return new WaitForSeconds(interval);
-            }
-        }
+        //    for (int x = cellBounds.xMin; x <= cellBounds.xMax; x++)
+        //    {
+        //        for (int y = cellBounds.yMin; y <= cellBounds.yMax; y++)
+        //        {
+        //            // セルの位置
+        //            position.x = x;
+        //            position.y = y;
+        //            // セル位置のタイルを取得
+        //            var tile = tilemap.GetTile(position);
+        //            // タイルの存在確認
+        //            if (tile != null)
+        //            {
+        //                // セルのワールド座標を取得
+        //                var worldPosition = tilemap.GetCellCenterWorld(position);
+        //                // Tilemapからタイルを削除
+        //                tilemap.SetTile(position, null);
+        //                // 崩壊タイルを生成
+        //                var brokenTile = Instantiate(
+        //                    brokenTilePrefab, worldPosition, brokenTilePrefab.transform.rotation);
+        //            }
+        //        }
+        //        yield return new WaitForSeconds(interval);
+        //    }
+        //}
     }
 }
