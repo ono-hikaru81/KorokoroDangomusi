@@ -42,10 +42,10 @@ namespace RunGame.Stage
         static readonly int dashId = Animator.StringToHash("isDash");
 
         // ダッシュ状態の場合はtrue
-        public bool IsDash {
-            get { return isDash; }
+        public bool RotationMode {
+            get { return rotationMode; }
             private set {
-                isDash = value;
+                rotationMode = value;
                 // ダッシュ状態への遷移時
                 if (value)
                 {
@@ -73,7 +73,7 @@ namespace RunGame.Stage
                 }
             }
         }
-        bool isDash = false;
+        bool rotationMode = false;
 
         // 設置判定用のエリア
         Vector3 groundCheckA, groundCheckB;
@@ -145,42 +145,62 @@ namespace RunGame.Stage
             // 接地している場合
             if (isGrounded)
             {
-                // 'D'キーが押し下げられている場合はダッシュ処理
+                // '十字'キーが押されているときの移動させる処理
+                if(Input.GetKey(KeyCode.RightArrow))
+                {
+                    var velocity = rigidbody.velocity;
+                    velocity.x = speed;
+                    rigidbody.velocity = velocity;
+                }
+                else if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    var velocity = rigidbody.velocity;
+                    velocity.x = -speed;
+                    rigidbody.velocity = velocity;
+                }
+                // 'D'キーが押し下げられている場合はダッシュ処理(コロコロモード)
                 if (Input.GetKey(KeyCode.D))
                 {
                     // x軸方向の移動
                     var velocity = rigidbody.velocity;
-                    velocity.x = dashSpeed;
+                    if(Input.GetKey(KeyCode.RightArrow))
+                    {
+                        velocity.x = dashSpeed;
+                    }
+                    else if(Input.GetKey(KeyCode.LeftArrow))
+                    {
+                        velocity.x = -dashSpeed;
+                    }
                     rigidbody.velocity = velocity;
                     // 通常状態からダッシュ状態に切り替える場合
-                    if (!IsDash)
+                    if (!RotationMode)
                     {
-                        IsDash = true;
+                        RotationMode = true;
                     }
                 }
                 // 'W'キーが押された場合はジャンプ処理
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
-                    //IsDash = false;
+                    //RotationMode = false;
                     //rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                     //// ジャンプ状態に設定
                     //isGrounded = false;
                 }
                 else
                 {
-                    IsDash = false;
-                    // x軸方向の移動
-                    var velocity = rigidbody.velocity;
-                    velocity.x = speed;
-                    rigidbody.velocity = velocity;
+                    RotationMode = false;
+                //    // x軸方向の移動
+                //    var velocity = rigidbody.velocity;
+                //    velocity.x = -speed;
+                //    rigidbody.velocity = velocity;
                 }
             }
             // 空中状態の場合
             else
             {
-                if (IsDash)
+                if (RotationMode)
                 {
-                    IsDash = false;
+                    RotationMode = false;
                 }
             }
         }
