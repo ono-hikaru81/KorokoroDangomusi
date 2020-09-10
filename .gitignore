@@ -72,3 +72,6 @@ crashlytics-build.properties
 RunGame_dangomusi/Library/
 RunGame_dangomusi/Temp/
 RunGame_dangomusi/obj/Debug/
+RunGame.exe
+UnityCrashHandler64.exe
+UnityPlayer.dll
