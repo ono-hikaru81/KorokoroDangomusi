@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// <summary>
+/// 敵の『モグラ』を表します。
+/// </summary>
 public class Mole : MonoBehaviour
 {
     // Start is called before the first frame update

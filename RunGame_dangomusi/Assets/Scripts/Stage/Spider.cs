@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 敵の『クモ』を表します。
+/// </summary>
 public class Spider : MonoBehaviour
 {
     // Start is called before the first frame update

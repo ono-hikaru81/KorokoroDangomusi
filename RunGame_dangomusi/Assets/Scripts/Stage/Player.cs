@@ -41,7 +41,7 @@ namespace RunGame.Stage
         // AnimatorのパラメーターID
         static readonly int dashId = Animator.StringToHash("isDash");
 
-        // ダッシュ状態の場合はtrue
+        // コロコロモード状態の場合はtrue
         public bool RotationMode {
             get { return rotationMode; }
             private set {
