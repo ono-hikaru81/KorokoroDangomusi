@@ -92,41 +92,41 @@ namespace RunGame.Stage
             bgmAudio.clip = clip;
             bgmAudio.Play();
 
-            StartCoroutine(OnStart());
+//            StartCoroutine(OnStart());
         }
 
         /// <summary>
         /// コルーチンを使ったカウントダウン演出
         /// </summary>
-        IEnumerator OnStart()
-        {
-            yield return new WaitForSeconds(1); // 1秒待機
+        //IEnumerator OnStart()
+        //{
+        //    yield return new WaitForSeconds(1); // 1秒待機
 
-            const float showTimeout = 0.6f;
+        //    const float showTimeout = 0.6f;
 
-            UiManager.Instance.ShowMessage("3");
-            yield return new WaitForSeconds(showTimeout);
-            UiManager.Instance.HideMessage();
-            yield return new WaitForSeconds(1 - showTimeout);
+        //    UiManager.Instance.ShowMessage("3");
+        //    yield return new WaitForSeconds(showTimeout);
+        //    UiManager.Instance.HideMessage();
+        //    yield return new WaitForSeconds(1 - showTimeout);
 
-            UiManager.Instance.ShowMessage("2");
-            yield return new WaitForSeconds(showTimeout);
-            UiManager.Instance.HideMessage();
-            yield return new WaitForSeconds(1 - showTimeout);
+        //    UiManager.Instance.ShowMessage("2");
+        //    yield return new WaitForSeconds(showTimeout);
+        //    UiManager.Instance.HideMessage();
+        //    yield return new WaitForSeconds(1 - showTimeout);
 
-            UiManager.Instance.ShowMessage("1");
-            yield return new WaitForSeconds(showTimeout);
-            UiManager.Instance.HideMessage();
-            yield return new WaitForSeconds(1 - showTimeout);
+        //    UiManager.Instance.ShowMessage("1");
+        //    yield return new WaitForSeconds(showTimeout);
+        //    UiManager.Instance.HideMessage();
+        //    yield return new WaitForSeconds(1 - showTimeout);
 
-            UiManager.Instance.ShowMessage("GO!");
+        //    UiManager.Instance.ShowMessage("GO!");
 
-            // ステージをプレイ開始
-            playState = StartCoroutine(OnPlay());
+        //    // ステージをプレイ開始
+        //    playState = StartCoroutine(OnPlay());
 
-            yield return new WaitForSeconds(1); // 1秒待機
-            UiManager.Instance.HideMessage();
-        }
+        //    yield return new WaitForSeconds(1); // 1秒待機
+        //    UiManager.Instance.HideMessage();
+        //}
 
         /// <summary>
         /// Playステートの際のフレーム更新処理です。
