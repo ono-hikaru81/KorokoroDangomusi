@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using RunGame.Stage;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 // <summary>
@@ -7,6 +9,10 @@ using UnityEngine;
 /// </summary>
 public class Ants : MonoBehaviour
 {
+    GameObject playerObj;
+
+    Player player;
+
     public enum ActionPart
     {
         Wait, // 待機モーション
@@ -20,13 +26,15 @@ public class Ants : MonoBehaviour
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 
-    // 
+    // 時間管理変数
     float motiontimer = 0.0f;
     float pausetimer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerObj = GameObject.Find("Player");
+        player = playerObj.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -43,9 +51,18 @@ public class Ants : MonoBehaviour
             case ActionPart.Death:
                 DeathAction();
                 break;
-        }
+        }        
+    }
 
-        
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (player.RotationMode == true)
+            {
+                Action = ActionPart.Death;
+            }
+        }
     }
 
     void WaitAction()
@@ -68,6 +85,6 @@ public class Ants : MonoBehaviour
 
     void DeathAction()
     {
-
+        Destroy(gameObject);
     }
 }

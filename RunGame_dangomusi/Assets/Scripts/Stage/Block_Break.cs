@@ -17,9 +17,14 @@ public class Block_Break : MonoBehaviour
         player = playerObj.GetComponent<Player>();
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (player.RotationMode == true) {
-            Destroy(gameObject);
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (player.RotationMode == true)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
