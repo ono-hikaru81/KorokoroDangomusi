@@ -25,6 +25,9 @@ namespace RunGame.Stage
         [SerializeField]
         private AudioClip soundOnDash = null;
 
+        // コロコロモードのスタミナ
+        float stamina = 10.0f;
+
         /// <summary>
         /// プレイ中の場合はtrue、ステージ開始前またはゲームオーバー時にはfalse
         /// </summary>
@@ -159,8 +162,10 @@ namespace RunGame.Stage
                     rigidbody.velocity = velocity;
                 }
                 // 'D'キーが押し下げられている場合はダッシュ処理(コロコロモード)
-                if (Input.GetKey(KeyCode.D))
+                if (Input.GetKey(KeyCode.D) && stamina >= 0)
                 {
+                    // スタミナが減少
+                    stamina -= Time.deltaTime;
                     // x軸方向の移動
                     var velocity = rigidbody.velocity;
                     if(Input.GetKey(KeyCode.RightArrow))
