@@ -14,7 +14,7 @@ namespace RunGame.Stage
         private float speed = 4;
         // ダッシュ時の移動速度を指定します。
         [SerializeField]
-        private float dashSpeed = 8;
+        private float dashSpeed = 6;
         // ジャンプの力を指定します。
         [SerializeField]
         private float jumpPower = 150;
@@ -162,7 +162,7 @@ namespace RunGame.Stage
                     rigidbody.velocity = velocity;
                 }
                 // 'D'キーが押し下げられている場合はダッシュ処理(コロコロモード)
-                if (Input.GetKey(KeyCode.D) && stamina >= 0)
+                if (Input.GetKey(KeyCode.DownArrow) && stamina >= 0)
                 {
                     // スタミナが減少
                     stamina -= Time.deltaTime;
@@ -261,6 +261,15 @@ namespace RunGame.Stage
         /// <param name="collider">侵入したトリガー</param>
         private void OnTriggerEnter2D(Collider2D collider)
         {
+            // 敵の当たり判定
+            if (collider.tag == "Enemy")
+            {
+                if (RotationMode == false)
+                {
+                    Destroy(gameObject);
+                }
+            }
+
             // ゴール判定
             if (collider.tag == "Finish")
             {
