@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using RunGame.GameClear;
+using RunGame.SelectStage;
+using RunGame.Stage;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;  // ←追加
@@ -10,6 +13,7 @@ namespace RunGame.Title
     /// </summary>
     public class SceneController : MonoBehaviour
     {
+
         // Start is called before the first frame update
         void Start()
         {
@@ -34,9 +38,14 @@ namespace RunGame.Title
         /// </summary>
         public void OnClickStartButton()
         {
-            // 『ステージ選択画面』へシーン遷移
-            // ステージ選択はスキップ
+            PlayerPrefs.SetInt("StageNum", 0);
             SceneManager.LoadScene("Stage");
         }
+
+        public void OnClickLoadButton() {
+
+            SceneManager.LoadScene("Stage");
+        }
+
     }
 }

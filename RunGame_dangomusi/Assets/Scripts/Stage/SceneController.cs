@@ -1,4 +1,6 @@
-﻿using System.Collections;   // コルーチンのため
+﻿using RunGame.SelectStage;
+using RunGame.Title;
+using System.Collections;   // コルーチンのため
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,7 +38,7 @@ namespace RunGame.Stage
             set { stageNo = value; }
         }
         private static int stageNo = 0;
-
+        
         /// <summary>
         /// プレハブからステージを生成する場合はtrueを指定します。
         /// </summary>
@@ -66,6 +68,8 @@ namespace RunGame.Stage
         {
             // 他のゲームオブジェクトを参照
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+            stageNo = PlayerPrefs.GetInt("StageNum", 0);
 
             // ステージプレハブを読み込む
             if (instantiateStage)
