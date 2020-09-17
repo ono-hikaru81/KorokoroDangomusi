@@ -97,8 +97,8 @@ namespace RunGame.Result
                 }
                 // 最終ステージをクリアーした場合
                 else {
-                    // 『ゲームクリアー画面』へシーン遷移
-                    SceneManager.LoadScene("GameClear");
+                    // 『エンディング画面』へシーン遷移
+                    SceneManager.LoadScene("Ending");
                 }
             }
         }

@@ -174,6 +174,10 @@ namespace RunGame.Stage
 
             player.IsActive = false;
 
+            PlayerPrefs.SetInt("StageNum", stageNo + 1);
+            PlayerPrefs.Save();
+            Debug.Log("セーブ完了");
+
             // ステージクリアー演出のコルーチンを開始
             StartCoroutine(OnStageClear());
         }

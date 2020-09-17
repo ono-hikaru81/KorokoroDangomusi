@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameClear.unity
     guid: 5a3c2909249a9cb419d6cec84935b289
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 32591528c6cbd7c479a4c1a165c859f0
+  - enabled: 1
+    path: Assets/Scenes/Credit.unity
+    guid: f7993fa990dfb644c93be3dbb83d092b
   m_configObjects: {}

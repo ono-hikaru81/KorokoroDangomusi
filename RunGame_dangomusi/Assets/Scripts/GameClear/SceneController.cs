@@ -22,8 +22,8 @@ namespace RunGame.GameClear
             // 「Enter」キーが押された場合
             if (Input.GetKeyUp(KeyCode.Return))
             {
-                // 『タイトル画面』へシーン遷移
-                SceneManager.LoadScene("Title");
+                // 『スタッフロール画面』へシーン遷移
+                SceneManager.LoadScene("Credit");
             }
         }
     }
