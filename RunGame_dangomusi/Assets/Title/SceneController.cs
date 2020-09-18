@@ -23,13 +23,7 @@ namespace RunGame.Title
         // Update is called once per frame
         void Update()
         {
-            // 「Enter」キーが押された場合
-            if (Input.GetKeyUp(KeyCode.Return))
-            {
-                // 『ステージ選択画面』へシーン遷移
-                // ステージ選択はスキップ
-                SceneManager.LoadScene("Stage");
-            }
+
         }
 
         /// <summary>
