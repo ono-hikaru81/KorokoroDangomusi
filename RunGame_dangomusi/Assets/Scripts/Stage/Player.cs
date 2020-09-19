@@ -148,8 +148,17 @@ namespace RunGame.Stage
             // 接地している場合
             if (isGrounded)
             {
+                if(stamina >= 10.0f)
+                {
+                    RotationMode = true;
+                }
+                if (stamina <= 0.0f)
+                {
+                    RotationMode = false;
+                }
+                
                 // '十字'キーが押されているときの移動させる処理
-                if(Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
                     var velocity = rigidbody.velocity;
                     velocity.x = speed;
@@ -161,11 +170,11 @@ namespace RunGame.Stage
                     velocity.x = -speed;
                     rigidbody.velocity = velocity;
                 }
-                // 'D'キーが押し下げられている場合はダッシュ処理(コロコロモード)
-                if (Input.GetKey(KeyCode.DownArrow) && stamina >= 0)
+                // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
+                if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f && RotationMode == true)
                 {
                     // スタミナが減少
-                    stamina -= Time.deltaTime;
+                    stamina -= Time.deltaTime * 2;
                     // x軸方向の移動
                     var velocity = rigidbody.velocity;
                     if(Input.GetKey(KeyCode.RightArrow))
@@ -182,6 +191,11 @@ namespace RunGame.Stage
                     {
                         RotationMode = true;
                     }
+                }
+                // '下'キーが押されていないかつスタミナが減少しているときは回復する
+                else if (Input.GetKey(KeyCode.DownArrow) == false && stamina < 10.0f)
+                {
+                    stamina += Time.deltaTime * 2;
                 }
                 // 'W'キーが押された場合はジャンプ処理
                 else if (Input.GetKeyDown(KeyCode.W))
