@@ -28,6 +28,9 @@ namespace RunGame.Stage
         // コロコロモードのスタミナ
         float stamina = 10.0f;
 
+        // バネの力
+        float springPower = 10;
+
         /// <summary>
         /// プレイ中の場合はtrue、ステージ開始前またはゲームオーバー時にはfalse
         /// </summary>
@@ -145,6 +148,18 @@ namespace RunGame.Stage
                 }
             }
 
+            // '十字'キーが押されているときの移動させる処理
+            if (Input.GetKey(KeyCode.RightArrow)) {
+                var velocity = rigidbody.velocity;
+                velocity.x = speed;
+                rigidbody.velocity = velocity;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow)) {
+                var velocity = rigidbody.velocity;
+                velocity.x = -speed;
+                rigidbody.velocity = velocity;
+            }
+
             // 接地している場合
             if (isGrounded)
             {
@@ -157,19 +172,6 @@ namespace RunGame.Stage
                     RotationMode = false;
                 }
                 
-                // '十字'キーが押されているときの移動させる処理
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    var velocity = rigidbody.velocity;
-                    velocity.x = speed;
-                    rigidbody.velocity = velocity;
-                }
-                else if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    var velocity = rigidbody.velocity;
-                    velocity.x = -speed;
-                    rigidbody.velocity = velocity;
-                }
                 // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
                 if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f && RotationMode == true)
                 {
@@ -282,6 +284,14 @@ namespace RunGame.Stage
                 {
                     Destroy(gameObject);
                 }
+            }
+
+            // バネ判定
+            if (collider.tag == "Spring") {
+                RotationMode = false;
+                var velocity = rigidbody.velocity;
+                velocity.y = springPower;
+                rigidbody.velocity = velocity;
             }
 
             // ゴール判定
