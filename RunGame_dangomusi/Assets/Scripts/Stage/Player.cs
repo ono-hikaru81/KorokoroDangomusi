@@ -25,8 +25,11 @@ namespace RunGame.Stage
         [SerializeField]
         private AudioClip soundOnDash = null;
 
+        // スタミナゲージオブジェクト保存用
+        public GameObject UiStaminaGageObject;
+
         // コロコロモードのスタミナ
-        float stamina = 10.0f;
+        public float stamina = 10.0f;
 
         // バネの力
         float springPower = 10;
@@ -97,6 +100,9 @@ namespace RunGame.Stage
             animator = GetComponent<Animator>();
             rigidbody = GetComponent<Rigidbody2D>();
             audioSource = GetComponent<AudioSource>();
+
+            // UI側のスタミナゲージを初期化
+            UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
 
             // Box Collider 2Dの判定エリアを取得
             var collider = GetComponent<BoxCollider2D>();
@@ -177,6 +183,8 @@ namespace RunGame.Stage
                 {
                     // スタミナが減少
                     stamina -= Time.deltaTime * 2;
+                    // スタミナゲージ更新
+                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
                     // x軸方向の移動
                     var velocity = rigidbody.velocity;
                     if(Input.GetKey(KeyCode.RightArrow))
@@ -198,6 +206,8 @@ namespace RunGame.Stage
                 else if (Input.GetKey(KeyCode.DownArrow) == false && stamina < 10.0f)
                 {
                     stamina += Time.deltaTime * 2;
+                    // スタミナゲージ更新
+                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
                 }
                 // 'W'キーが押された場合はジャンプ処理
                 else if (Input.GetKeyDown(KeyCode.W))
