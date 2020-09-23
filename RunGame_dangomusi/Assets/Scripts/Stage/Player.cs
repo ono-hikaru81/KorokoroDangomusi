@@ -283,6 +283,8 @@ namespace RunGame.Stage
             {
                 if (RotationMode == false)
                 {
+                    IsActive = false;
+                    SceneController.Instance.GameOver();
                     Destroy(gameObject);
                 }
             }
