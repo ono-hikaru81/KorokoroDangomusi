@@ -8,6 +8,9 @@ TagManager:
   - GameOver
   - Item
   - Enemy
+  - Spring
+  - Wall
+  - Trap
   layers:
   - Default
   - TransparentFX

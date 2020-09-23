@@ -288,10 +288,13 @@ namespace RunGame.Stage
         private void OnTriggerEnter2D(Collider2D collider)
         {
             // 敵の当たり判定
-            if (collider.tag == "Enemy")
+            if (collider.tag == "Enemy" ||
+                collider.tag == "Trap")
             {
                 if (RotationMode == false)
                 {
+                    IsActive = false;
+                    SceneController.Instance.GameOver();
                     Destroy(gameObject);
                 }
             }
