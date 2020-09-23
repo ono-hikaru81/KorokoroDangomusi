@@ -1,4 +1,5 @@
-﻿using RunGame.Stage;
+﻿using Microsoft.Unity.VisualStudio.Editor;
+using RunGame.Stage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -22,17 +23,16 @@ public class Ants : MonoBehaviour
     ActionPart Action = ActionPart.Wait;
 
     // アリの速度
-    float speed_x = 0.005f;
+    float speed_x = -4;
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 
-    // 時間管理変数
-    float motiontimer = 0.0f;
-    float pausetimer = 0.0f;
+    Rigidbody2D rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
     }
@@ -63,28 +63,35 @@ public class Ants : MonoBehaviour
                 Action = ActionPart.Death;
             }
         }
+
+        if(collision.gameObject.tag == "Enemy" ||
+           collision.gameObject.tag == "Wall") {
+            speed_x *= -1;
+            var scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
     }
 
     void WaitAction()
     {
-        transform.Translate(speed_x, speed_y, speed_z);
 
-        motiontimer += Time.deltaTime;
-        if (motiontimer >= 2.0f)
-        {
-            pausetimer += Time.deltaTime;
-            speed_x *= -1;
-            motiontimer = 0;
-        }
     }
 
     void RaidAction()
     {
-
+        var velocity = rigidbody.velocity;
+        velocity.x = speed_x;
+        rigidbody.velocity = velocity;
     }
 
     void DeathAction()
     {
         Destroy(gameObject);
+    }
+
+    // カメラの範囲内に入ったときに攻撃パートに切り替える
+    private void OnBecameVisible() {
+        Action = ActionPart.Raid;
     }
 }
