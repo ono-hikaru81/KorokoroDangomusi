@@ -31,9 +31,6 @@ namespace RunGame.Stage
         // コロコロモードのスタミナ
         public float stamina = 10.0f;
 
-        // バネの力
-        float springPower = 10;
-
         /// <summary>
         /// プレイ中の場合はtrue、ステージ開始前またはゲームオーバー時にはfalse
         /// </summary>
@@ -155,31 +152,25 @@ namespace RunGame.Stage
             }
 
             // '十字'キーが押されているときの移動させる処理
-            if (Input.GetKey(KeyCode.RightArrow)) {
-                var velocity = rigidbody.velocity;
-                velocity.x = speed;
-                rigidbody.velocity = velocity;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow)) {
-                var velocity = rigidbody.velocity;
-                velocity.x = -speed;
-                rigidbody.velocity = velocity;
+            if (RotationMode == false) {
+                if (Input.GetKey(KeyCode.RightArrow)) {
+                    var velocity = rigidbody.velocity;
+                    velocity.x = speed;
+                    rigidbody.velocity = velocity;
+                }
+                else if (Input.GetKey(KeyCode.LeftArrow)) {
+                    var velocity = rigidbody.velocity;
+                    velocity.x = -speed;
+                    rigidbody.velocity = velocity;
+                }
             }
 
             // 接地している場合
             if (isGrounded)
             {
-                if(stamina >= 10.0f)
-                {
-                    RotationMode = true;
-                }
-                if (stamina <= 0.0f)
-                {
-                    RotationMode = false;
-                }
                 
                 // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
-                if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f && RotationMode == true)
+                if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f)
                 {
                     // スタミナが減少
                     stamina -= Time.deltaTime * 2;
@@ -197,25 +188,17 @@ namespace RunGame.Stage
                     }
                     rigidbody.velocity = velocity;
                     // 通常状態からダッシュ状態に切り替える場合
-                    if (!RotationMode)
-                    {
+                    if (!RotationMode) {
                         RotationMode = true;
                     }
                 }
                 // '下'キーが押されていないかつスタミナが減少しているときは回復する
                 else if (Input.GetKey(KeyCode.DownArrow) == false && stamina < 10.0f)
                 {
+                    RotationMode = false;
                     stamina += Time.deltaTime * 2;
                     // スタミナゲージ更新
 //                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
-                }
-                // 'W'キーが押された場合はジャンプ処理
-                else if (Input.GetKeyDown(KeyCode.W))
-                {
-                    //RotationMode = false;
-                    //rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-                    //// ジャンプ状態に設定
-                    //isGrounded = false;
                 }
                 else
                 {
@@ -307,14 +290,6 @@ namespace RunGame.Stage
                 }
             }
 
-            // バネ判定
-            if (collider.tag == "Spring") {
-                RotationMode = false;
-                var velocity = rigidbody.velocity;
-                velocity.y = springPower;
-                rigidbody.velocity = velocity;
-            }
-
             // ゴール判定
             if (collider.tag == "Finish")
             {
@@ -331,6 +306,12 @@ namespace RunGame.Stage
                 // 取得したアイテムを削除
                 Destroy(collider.gameObject);
             }
+        }
+
+        public void SpringProcess(float springPower) {
+            var velocity = rigidbody.velocity;
+            velocity.y = springPower;
+            rigidbody.velocity = velocity;
         }
     }
 }
