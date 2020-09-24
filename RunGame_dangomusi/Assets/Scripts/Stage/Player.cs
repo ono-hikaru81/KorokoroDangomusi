@@ -102,7 +102,7 @@ namespace RunGame.Stage
             audioSource = GetComponent<AudioSource>();
 
             // UI側のスタミナゲージを初期化
-            UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
+//            UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
 
             // Box Collider 2Dの判定エリアを取得
             var collider = GetComponent<BoxCollider2D>();
@@ -184,7 +184,7 @@ namespace RunGame.Stage
                     // スタミナが減少
                     stamina -= Time.deltaTime * 2;
                     // スタミナゲージ更新
-                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
+//                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
                     // x軸方向の移動
                     var velocity = rigidbody.velocity;
                     if(Input.GetKey(KeyCode.RightArrow))
@@ -207,7 +207,7 @@ namespace RunGame.Stage
                 {
                     stamina += Time.deltaTime * 2;
                     // スタミナゲージ更新
-                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
+//                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
                 }
                 // 'W'キーが押された場合はジャンプ処理
                 else if (Input.GetKeyDown(KeyCode.W))
