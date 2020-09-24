@@ -12,6 +12,8 @@ public class Caterpiller : MonoBehaviour
     GameObject playerObj;
 
     Player player;
+    Rigidbody2D rigidbody;
+
 
     public enum ActionPart
     {
@@ -22,7 +24,7 @@ public class Caterpiller : MonoBehaviour
     ActionPart Action = ActionPart.Wait;
 
     // ケムシの速度
-    float speed_x = 0.0f;
+    float speed_x = -1;
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 
@@ -30,11 +32,15 @@ public class Caterpiller : MonoBehaviour
     float motiontimer = 0.0f;
     float pausetimer = 0.0f;
 
+    GameObject needle;
+
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
+        needle = (GameObject)Resources.Load("Prefabs/needle");
     }
 
     // Update is called once per frame
@@ -63,20 +69,44 @@ public class Caterpiller : MonoBehaviour
                 Action = ActionPart.Death;
             }
         }
+
+        if (collision.gameObject.tag == "Enemy" ||
+            collision.gameObject.tag == "Wall") {
+            speed_x *= -1;
+            var scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
     }
 
     void WaitAction()
     {
-
+        motiontimer += Time.deltaTime;
+        if(motiontimer > Random.Range(1.5f, 2.0f)) {
+            motiontimer = 0;
+            Action = ActionPart.Raid;
+        }
+        var velocity = rigidbody.velocity;
+        velocity.x = speed_x;
+        rigidbody.velocity = velocity;
     }
 
     void RaidAction()
     {
-
+        if (needle != null) {
+            Instantiate(needle, transform.position, Quaternion.Euler(0, 0, 180));
+            Instantiate(needle, transform.position, Quaternion.Euler(0, 0, 150));
+            Instantiate(needle, transform.position, Quaternion.Euler(0, 0, 210));
+        }
+        Action = ActionPart.Wait;
     }
 
     void DeathAction()
     {
         Destroy(gameObject);
+    }
+
+    private void OnBecameVisible() {
+        Action = ActionPart.Wait;
     }
 }
