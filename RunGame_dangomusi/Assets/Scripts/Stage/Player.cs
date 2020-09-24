@@ -249,6 +249,14 @@ namespace RunGame.Stage
             // コライダーが存在するかどうかを判定
             isGrounded = Physics2D.OverlapArea(
                 minPosition, maxPosition, groundLayer);
+
+            Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+            float rotation = rigidbody2D.rotation;
+
+            if(Mathf.Abs(rotation) > 45.0f)
+            {
+                rigidbody2D.SetRotation(rigidbody2D.rotation > 0.0f ? 45.0f : -45.0f);
+            }
 #if UNITY_EDITOR
             // デバッグ用にテストでラインを描画する
             Vector2 start, end;

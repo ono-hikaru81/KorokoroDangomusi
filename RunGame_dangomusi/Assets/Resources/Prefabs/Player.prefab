@@ -270,7 +270,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   soundOnDash: {fileID: 8300000, guid: bb12485cddd7eee4eb0ebb425a257757, type: 3}
-  UiStaminaGageObject: {fileID: 0}
+  UiStaminaGageObject: {fileID: 7707037785149239869, guid: 968f947653cbb1049aeaca03882815a8,
+    type: 3}
   stamina: 10
   isGrounded: 1
 --- !u!70 &1103262146041991163

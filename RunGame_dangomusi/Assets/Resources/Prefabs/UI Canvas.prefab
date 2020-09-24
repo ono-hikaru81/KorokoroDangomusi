@@ -88,6 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca62a700a6229d43b3e919362619f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StaminaImages: {fileID: 3203787497280203216}
+  Player: {fileID: 9048238283160158231, guid: 04ee8b71dcceef84eb66c02b3391418c, type: 3}
 --- !u!1 &7707037784486905397
 GameObject:
   m_ObjectHideFlags: 0
