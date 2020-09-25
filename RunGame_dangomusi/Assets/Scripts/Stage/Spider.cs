@@ -118,15 +118,17 @@ public class Spider : MonoBehaviour
     }
 
     void TurnOver() {
-        var scale = transform.localScale;
-        if (player.transform.position.x < transform.position.x) {
-            LDirection = LookingDirection.Left;
-            scale.x = 0.39f;
+        if (player != null) {
+            var scale = transform.localScale;
+            if (player.transform.position.x < transform.position.x) {
+                LDirection = LookingDirection.Left;
+                scale.x = 0.39f;
+            }
+            else if (player.transform.position.x > transform.position.x) {
+                LDirection = LookingDirection.Right;
+                scale.x = -0.39f;
+            }
+            transform.localScale = scale;
         }
-        else if (player.transform.position.x > transform.position.x) {
-            LDirection = LookingDirection.Right;
-            scale.x = -0.39f;
-        }
-        transform.localScale = scale;
     }
 }

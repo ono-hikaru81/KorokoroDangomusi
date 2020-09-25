@@ -17,9 +17,12 @@ public class Spring : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider) {
         if(collider.tag == "Player") {
-            if(player.RotationMode == true) {
-                player.SpringProcess(springPower);
+            if(player.RotationMode == false) {
+                return;
             }
         }
+        var velocity = collider.attachedRigidbody.velocity;
+        velocity.y = springPower;
+        collider.attachedRigidbody.velocity = velocity;
     }
 }

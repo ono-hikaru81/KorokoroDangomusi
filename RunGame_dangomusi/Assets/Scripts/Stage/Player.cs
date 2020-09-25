@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 namespace RunGame.Stage
@@ -279,8 +280,7 @@ namespace RunGame.Stage
         private void OnTriggerEnter2D(Collider2D collider)
         {
             // 敵の当たり判定
-            if (collider.tag == "Enemy" ||
-                collider.tag == "Trap")
+            if (collider.tag == "Enemy" || collider.tag == "Trap")
             {
                 if (RotationMode == false)
                 {
@@ -308,10 +308,15 @@ namespace RunGame.Stage
             }
         }
 
-        public void SpringProcess(float springPower) {
-            var velocity = rigidbody.velocity;
-            velocity.y = springPower;
-            rigidbody.velocity = velocity;
+        private void OnCollisionEnter2D(Collision2D collision) {
+            // 敵の当たり判定
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Trap") {
+                if (RotationMode == false) {
+                    IsActive = false;
+                    SceneController.Instance.GameOver();
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }
