@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StaminaGage : MonoBehaviour
+public class StaminaGauge : MonoBehaviour
 {
-    public GameObject StaminaImages;
-    public GameObject Player;
-    float stamina = 10.0f;
+    public void UpdateGauge(float stamina)
+    {
+        var slider = GetComponent<Slider>();
+        slider.value = stamina;
+    }
 
     // Start is called before the first frame update
     public void Start()
     {
-        
+
     }
 
     // Update is called once per frame

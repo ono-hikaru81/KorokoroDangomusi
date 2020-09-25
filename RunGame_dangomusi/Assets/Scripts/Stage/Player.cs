@@ -26,7 +26,7 @@ namespace RunGame.Stage
         private AudioClip soundOnDash = null;
 
         // スタミナゲージオブジェクト保存用
-        public GameObject UiStaminaGageObject;
+        public GameObject UiStaminaGaugeObject;
 
         // コロコロモードのスタミナ
         public float stamina = 10.0f;
@@ -99,7 +99,7 @@ namespace RunGame.Stage
             audioSource = GetComponent<AudioSource>();
 
             // UI側のスタミナゲージを初期化
-//            UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
+            UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
 
             // Box Collider 2Dの判定エリアを取得
             var collider = GetComponent<BoxCollider2D>();
@@ -175,7 +175,7 @@ namespace RunGame.Stage
                     // スタミナが減少
                     stamina -= Time.deltaTime * 2;
                     // スタミナゲージ更新
-//                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
+                    UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
                     // x軸方向の移動
                     var velocity = rigidbody.velocity;
                     if(Input.GetKey(KeyCode.RightArrow))
@@ -198,7 +198,7 @@ namespace RunGame.Stage
                     RotationMode = false;
                     stamina += Time.deltaTime * 2;
                     // スタミナゲージ更新
-//                    UiStaminaGageObject.GetComponent<StaminaGage>().UpdateStaminaGageImage(stamina);
+                    UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
                 }
                 else
                 {
