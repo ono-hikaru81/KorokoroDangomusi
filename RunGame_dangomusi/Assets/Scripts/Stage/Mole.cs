@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.U2D;
 using UnityEngine;
 
 // <summary>
@@ -13,26 +14,44 @@ public class Mole : MonoBehaviour
 
     Player player;
 
+    Vector2 pos;
+
+    bool burrowsPosTrigger = false;
+    bool burrowsColTrigger = false;
+
+    int hp = 3;
+
     public enum ActionPart
     {
         Wait, // 待機モーション
         Raid, // 戦闘モーション
-        Death // 死亡モーション
+        Death, // 死亡モーション
     }
     ActionPart Action = ActionPart.Wait;
 
+    public enum LookingDirection {
+        Left,
+        Right
+    }
+    LookingDirection LDirection = LookingDirection.Left;
+
     // モグラの速度
-    float speed_x = 0.0f;
+    float speed_x = 4.0f;
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 
     // 時間管理変数
     float motiontimer = 0.0f;
-    float pausetimer = 0.0f;
+    float burrowstimer = 0.0f;
+
+    Rigidbody2D rigidbody;
+    BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
     }
@@ -40,6 +59,7 @@ public class Mole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TurnOver();
         switch (Action)
         {
             case ActionPart.Wait:
@@ -60,8 +80,22 @@ public class Mole : MonoBehaviour
         {
             if (player.RotationMode == true)
             {
-                Action = ActionPart.Death;
+                hp -= 1;
+                if(hp <= 1) {
+                    speed_x *= 1.5f;
+                }
+
+                if(hp <= 0) {
+                    Destroy(gameObject);
+                }
             }
+        }
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Wall") {
+            speed_x *= -1;
+            var scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
         }
     }
 
@@ -72,11 +106,87 @@ public class Mole : MonoBehaviour
 
     void RaidAction()
     {
-
+        motiontimer += Time.deltaTime;
+        burrowstimer += Time.deltaTime;
+        switch (hp) {
+            case 1:
+            case 2:
+                if (burrowstimer >= 10.0f) {
+                    Burrows();
+                }
+                else if (motiontimer >= 2.0f) {
+                    Throwing();
+                    motiontimer = 0;
+                }
+                else {
+                    Rush();
+                }
+                break;
+            case 3:
+                Rush();
+                break;
+        }
     }
 
     void DeathAction()
     {
         Destroy(gameObject);
     }
+
+    void Rush() {
+        var velocity = rigidbody.velocity;
+        velocity.x = -speed_x;
+        rigidbody.velocity = velocity;
+    }
+
+    void Throwing() {
+        GameObject Dirt = (GameObject)Resources.Load("Prefabs/Dirt");
+        Instantiate(Dirt, transform.position, Quaternion.identity);
+    }
+
+    void Burrows() {
+        if(burrowsColTrigger == false) {
+            boxCollider.isTrigger = true;
+            pos = transform.position;
+            burrowsColTrigger = true;
+        }
+
+        if (transform.position.y < pos.y - 5 && burrowsPosTrigger == false) {
+            var position = transform.position;
+            position.x = player.transform.position.x;
+            transform.position = position;
+
+            var velocity = rigidbody.velocity;
+            velocity.y = 12;
+            rigidbody.velocity = velocity;
+            burrowsPosTrigger = true;
+        }
+
+        if (transform.position.y > pos.y + 5) {
+            boxCollider.isTrigger = false;
+            burrowsPosTrigger = false;
+            burrowsColTrigger = false;
+            burrowstimer = 0;
+        }
+    }
+
+    void TurnOver() {
+        if (player != null) {
+            var scale = transform.localScale;
+            if (player.transform.position.x < transform.position.x) {
+                LDirection = LookingDirection.Left;
+                scale.x = 0.585f;
+            }
+            else if (player.transform.position.x > transform.position.x) {
+                LDirection = LookingDirection.Right;
+                scale.x = -0.585f;
+            }
+            transform.localScale = scale;
+        }
+    }
+
+    private void OnBecameVisible() {
+        Action = ActionPart.Raid;
+    }
+
 }

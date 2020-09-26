@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2216845911886318510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.85, y: 0.421, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.39, y: 0.39, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fbec16d6143514ca904e60aaf06410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  springPower: 10
