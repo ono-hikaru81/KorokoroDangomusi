@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class StaminaGauge : MonoBehaviour
 {
-    public void UpdateGauge(float stamina)
-    {
-        var slider = GetComponent<Slider>();
-        slider.value = stamina;
-    }
-
     // Start is called before the first frame update
     public void Start()
     {
@@ -20,13 +14,14 @@ public class StaminaGauge : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        //if (RotationMode == false)
-        //{
-        //    stamina--;
-        //}
-        //else if (RotationMode == true)
-        //{
-        //    stamina++;
-        //}
+
     }
+
+    // Player側でスタミナが増減した時にUI側も減らす
+    public void UpdateGauge(float stamina)
+    {
+        var slider = GetComponent<Slider>();
+        slider.value = stamina;
+    }
+
 }

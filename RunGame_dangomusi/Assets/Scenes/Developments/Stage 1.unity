@@ -305,12 +305,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &699885224 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7707037786420524142, guid: 968f947653cbb1049aeaca03882815a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7707037785775723206}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &754472922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9048238283160158229, guid: 04ee8b71dcceef84eb66c02b3391418c,
@@ -399,12 +393,6 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &951400278 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7707037786168747408, guid: 968f947653cbb1049aeaca03882815a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7707037785775723206}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &997716179
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,18 +459,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1292852048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7707037784885922198, guid: 968f947653cbb1049aeaca03882815a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7707037785775723206}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1510244677 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7707037784533914499, guid: 968f947653cbb1049aeaca03882815a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7707037785775723206}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1310127158023223129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -504,22 +480,22 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: 
-      objectReference: {fileID: 1510244677}
+      objectReference: {fileID: 0}
     - target: {fileID: 1310127157688456020, guid: bda2c6f0cc7935b4c8048003a8082436,
         type: 3}
       propertyPath: gameOver
       value: 
-      objectReference: {fileID: 1292852048}
+      objectReference: {fileID: 0}
     - target: {fileID: 1310127157688456020, guid: bda2c6f0cc7935b4c8048003a8082436,
         type: 3}
       propertyPath: buttons.Array.data[0]
       value: 
-      objectReference: {fileID: 699885224}
+      objectReference: {fileID: 0}
     - target: {fileID: 1310127157688456020, guid: bda2c6f0cc7935b4c8048003a8082436,
         type: 3}
       propertyPath: buttons.Array.data[1]
       value: 
-      objectReference: {fileID: 951400278}
+      objectReference: {fileID: 0}
     - target: {fileID: 1310127157688456020, guid: bda2c6f0cc7935b4c8048003a8082436,
         type: 3}
       propertyPath: stagePrefab
@@ -634,6 +610,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2322053399039857118, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742520055979234858, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7707037784920413218, guid: 968f947653cbb1049aeaca03882815a8,
         type: 3}
       propertyPath: m_Color.r
