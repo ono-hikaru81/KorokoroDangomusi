@@ -91,16 +91,13 @@ public class Spider : MonoBehaviour
         if (motiontimer >= 6.0f) {
             GameObject Poison = (GameObject)Resources.Load("Prefabs/PoisonBall");
             if (LDirection == LookingDirection.Left) {
-                atackPos.x -= 1.5f;
-                if (Poison != null) {
-                    Instantiate(Poison, atackPos, Quaternion.identity);
-                }
+                atackPos.x -= 0.5f;
             }
             else if (LDirection == LookingDirection.Right) {
-                atackPos.x += 1.5f;
-                if (Poison != null) {
-                    Instantiate(Poison, atackPos, Quaternion.identity);
-                }
+                atackPos.x += 0.5f;
+            }
+            if (Poison != null) {
+                Instantiate(Poison, atackPos, Quaternion.identity);
             }
             atackPos.x = transform.position.x;
             motiontimer = pausetimer;

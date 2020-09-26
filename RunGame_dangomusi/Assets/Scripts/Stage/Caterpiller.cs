@@ -70,8 +70,16 @@ public class Caterpiller : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Enemy" ||
-            collision.gameObject.tag == "Wall") {
+        if (collision.gameObject.tag == "Enemy") {
+            speed_x *= -1;
+            var scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.tag == "Grounds") {
             speed_x *= -1;
             var scale = transform.localScale;
             scale.x *= -1;

@@ -19,10 +19,8 @@ public class Needle : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.tag == "Player") {
-            if(player.RotationMode == true) {
-                Destroy(gameObject);
-            }
+        if(collider.tag == "Player" || collider.tag == "Grounds") {
+            Destroy(gameObject);
         }
     }
 }

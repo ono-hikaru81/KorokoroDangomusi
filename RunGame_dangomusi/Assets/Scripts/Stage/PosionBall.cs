@@ -1,37 +1,51 @@
-﻿using System.Collections;
+﻿using RunGame.Stage;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PosionBall : MonoBehaviour
 {
     bool atackTrigger = false;
 
+    float speed = 0.215f;
+
     Vector2 atackPos1;
     Vector2 atackPos2;
 
     GameObject spiderObj;
     Spider spider;
+    Rigidbody2D rigidbody;
+
+    GameObject playerObj;
+    Player player;
+    public enum LookingDirection {
+        Left,
+        Right
+    }
+    LookingDirection LDirection = LookingDirection.Left;
+
 
     private void Start() {
+        rigidbody = GetComponent<Rigidbody2D>();
         spiderObj = GameObject.Find("Spider");
         spider = spiderObj.GetComponent<Spider>();
-        atackPos1 = transform.position;
-        atackPos1.y = transform.position.y - 0.5f;
-        atackPos2 = transform.position;
-        atackPos2.y = transform.position.y - 0.5f;
+        playerObj = GameObject.Find("Player");
+        player = playerObj.GetComponent<Player>();
+
+        TurnOver();
     }
 
     private void FixedUpdate() {
         if(atackTrigger == false) {
-            if (spider.transform.position.x > transform.position.x) {
-                transform.Translate(-0.215f, 0.0f, 0.0f);
+            if (LDirection == LookingDirection.Left) {
+                transform.Translate(-speed, 0, 0);
             }
-            else if (spider.transform.position.x < transform.position.x) {
-                transform.Translate(0.215f, 0.0f, 0.0f);
+            else if(LDirection == LookingDirection.Right) {
+                transform.Translate(speed, 0, 0);
             }
         }
-
-        if (atackTrigger == true) {
+        else if (atackTrigger == true) {
             GameObject Poison = (GameObject)Resources.Load("Prefabs/poison");
             if (Poison != null) {
                 Instantiate(Poison, atackPos1, Quaternion.identity);
@@ -44,11 +58,25 @@ public class PosionBall : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag != "Trap") {
+        if (collision.gameObject.tag == "Grounds") {
+            rigidbody.bodyType = RigidbodyType2D.Static;
             atackTrigger = true;
+            atackPos1.y = transform.position.y - 0.2f;
+            atackPos2.y = transform.position.y - 0.2f;
             atackPos1.x = transform.position.x;
             atackPos2.x = transform.position.x;
             Destroy(gameObject, 0.3f);
+        }
+    }
+
+    void TurnOver() {
+        if (spider != null) {
+            if (player.transform.position.x < transform.position.x + 0.5f) {
+                LDirection = LookingDirection.Left;
+            }
+            else if (player.transform.position.x > transform.position.x - 0.5f) {
+                LDirection = LookingDirection.Right;
+            }
         }
     }
 }
