@@ -10,7 +10,12 @@ public class Needle : MonoBehaviour
 
     void Start() {
         playerObj = GameObject.Find("Player");
-        player = playerObj.GetComponent<Player>();
+        if (playerObj != null) {
+            player = playerObj.GetComponent<Player>();
+        }
+        else {
+            Destroy(gameObject);
+        }
         Destroy(gameObject, 10.0f);
     }
 

@@ -31,7 +31,9 @@ public class PosionBall : MonoBehaviour
         spiderObj = GameObject.Find("Spider");
         spider = spiderObj.GetComponent<Spider>();
         playerObj = GameObject.Find("Player");
-        player = playerObj.GetComponent<Player>();
+        if (playerObj != null) {
+            player = playerObj.GetComponent<Player>();
+        }
 
         TurnOver();
     }
@@ -70,7 +72,7 @@ public class PosionBall : MonoBehaviour
     }
 
     void TurnOver() {
-        if (spider != null) {
+        if (playerObj != null) {
             if (player.transform.position.x < transform.position.x + 0.5f) {
                 LDirection = LookingDirection.Left;
             }
