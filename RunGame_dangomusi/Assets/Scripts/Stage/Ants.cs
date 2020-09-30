@@ -54,6 +54,17 @@ public class Ants : MonoBehaviour
         }        
     }
 
+    private void FixedUpdate()
+    {
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+        float rotation = rigidbody2D.rotation;
+        if (Mathf.Abs(rotation) > 45.0f)
+        {
+            rigidbody2D.SetRotation(rigidbody2D.rotation > 0.0f ? 45.0f : -45.0f);
+        }
+    }
+
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")

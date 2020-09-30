@@ -167,8 +167,8 @@ namespace RunGame.Stage
             }
 
             // 接地している場合
-            if (isGrounded)
-            {
+            //if (isGrounded)
+            //{
                 
                 // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
                 if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f)
@@ -209,15 +209,15 @@ namespace RunGame.Stage
                 //    velocity.x = -speed;
                 //    rigidbody.velocity = velocity;
                 }
-            }
+            //}
             // 空中状態の場合
-            else
-            {
-                if (RotationMode)
-                {
-                    RotationMode = false;
-                }
-            }
+            //else
+            //{
+            //    if (RotationMode)
+            //    {
+            //        RotationMode = false;
+            //    }
+            //}
         }
 
         /// <summary>

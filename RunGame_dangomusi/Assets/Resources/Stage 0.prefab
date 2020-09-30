@@ -47233,7 +47233,7 @@ PrefabInstance:
     - target: {fileID: 6819121509449703179, guid: 4aa8612f90d2f334f9151f26c374bc54,
         type: 3}
       propertyPath: m_Name
-      value: Spider (1)
+      value: Spider
       objectReference: {fileID: 0}
     - target: {fileID: 6819121509449703190, guid: 4aa8612f90d2f334f9151f26c374bc54,
         type: 3}
@@ -50178,7 +50178,7 @@ PrefabInstance:
     - target: {fileID: 6819121509449703179, guid: 4aa8612f90d2f334f9151f26c374bc54,
         type: 3}
       propertyPath: m_Name
-      value: Spider (2)
+      value: Spider
       objectReference: {fileID: 0}
     - target: {fileID: 6819121509449703190, guid: 4aa8612f90d2f334f9151f26c374bc54,
         type: 3}
