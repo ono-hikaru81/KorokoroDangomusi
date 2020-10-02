@@ -91,7 +91,7 @@ namespace RunGame.Stage
 
         // コンポーネントを事前に参照しておく変数
         Animator animator;
-        new Rigidbody2D rigidbody;
+        public new Rigidbody2D rigidbody;
         // サウンドエフェクト再生用のAudioSource
         AudioSource audioSource;
 
