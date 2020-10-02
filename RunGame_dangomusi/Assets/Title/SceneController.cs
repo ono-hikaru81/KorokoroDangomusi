@@ -13,7 +13,6 @@ namespace RunGame.Title
     /// </summary>
     public class SceneController : MonoBehaviour
     {
-
         // Start is called before the first frame update
         void Start()
         {
@@ -32,13 +31,16 @@ namespace RunGame.Title
         /// </summary>
         public void OnClickStartButton()
         {
-            PlayerPrefs.SetInt("StageNum", 0);
-            SceneManager.LoadScene("Stage");
+            PlayerPrefs.SetInt("isContinue", 1);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("Stage 0");
         }
 
         public void OnClickLoadButton() {
 
-            SceneManager.LoadScene("Stage");
+            PlayerPrefs.SetInt("isContinue", 0);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("Stage 0");
         }
 
     }

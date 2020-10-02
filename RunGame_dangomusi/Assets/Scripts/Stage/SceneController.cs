@@ -1,6 +1,9 @@
 ﻿using RunGame.SelectStage;
 using RunGame.Title;
 using System.Collections;   // コルーチンのため
+using System.ComponentModel.Design.Serialization;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -69,7 +72,20 @@ namespace RunGame.Stage
             // 他のゲームオブジェクトを参照
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-            stageNo = PlayerPrefs.GetInt("StageNum", 0);
+            // データ読み込み
+            var pos = player.transform.position;
+            switch (PlayerPrefs.GetInt("isContinue")) {
+                case 0:
+                    pos.x = PlayerPrefs.GetFloat("PlayerPosX", 0.0f);
+                    pos.y = PlayerPrefs.GetFloat("PlayerPosY", 3.0f);
+                    break;
+                default:
+                case 1:
+                    pos.x = 0.0f;
+                    pos.y = 3.0f;
+                    break;
+            }
+            player.transform.position = pos;
 
             // ステージプレハブを読み込む
             if (instantiateStage)
@@ -173,10 +189,6 @@ namespace RunGame.Stage
             }
 
             player.IsActive = false;
-
-            PlayerPrefs.SetInt("StageNum", stageNo + 1);
-            PlayerPrefs.Save();
-            Debug.Log("セーブ完了");
 
             // ステージクリアー演出のコルーチンを開始
             StartCoroutine(OnStageClear());
