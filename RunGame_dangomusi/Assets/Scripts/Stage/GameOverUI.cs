@@ -65,6 +65,8 @@ namespace RunGame.Stage
                     if (selectedIndex == 0)
                     {
                         // 現在起動しているシーンを再読み込み
+                        PlayerPrefs.SetInt("isContinue", 0);
+                        PlayerPrefs.Save();
                         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         break;
                     }
