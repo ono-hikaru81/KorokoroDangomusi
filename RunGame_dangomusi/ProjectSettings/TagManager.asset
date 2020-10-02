@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - Trap
   - Grounds
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -184,11 +184,9 @@ public class Mole : MonoBehaviour
             var scale = transform.localScale;
             if (player.transform.position.x < transform.position.x) {
                 LDirection = LookingDirection.Left;
-                scale.x = 0.585f;
             }
             else if (player.transform.position.x > transform.position.x) {
                 LDirection = LookingDirection.Right;
-                scale.x = -0.585f;
             }
             transform.localScale = scale;
         }

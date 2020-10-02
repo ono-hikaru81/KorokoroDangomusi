@@ -21,6 +21,10 @@ public class Spring : MonoBehaviour
                 return;
             }
         }
+        else if(collider.tag == "Boss") {
+            return;
+        }
+
         var velocity = collider.attachedRigidbody.velocity;
         velocity.y = springPower;
         collider.attachedRigidbody.velocity = velocity;
