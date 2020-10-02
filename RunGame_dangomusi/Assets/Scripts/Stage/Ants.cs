@@ -8,14 +8,12 @@ using UnityEngine;
 // <summary>
 /// 敵の『アリ』を表します。
 /// </summary>
-public class Ants : MonoBehaviour
-{
+public class Ants : MonoBehaviour {
     GameObject playerObj;
 
     Player player;
 
-    public enum ActionPart
-    {
+    public enum ActionPart {
         Wait, // 待機モーション
         Raid, // 戦闘モーション
         Death // 死亡モーション
@@ -27,21 +25,23 @@ public class Ants : MonoBehaviour
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 
+    int stopTimer = 0;
+    Vector2 vec;
+
     Rigidbody2D rigidbody;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        vec = transform.position;
         rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        switch (Action)
-        {
+    void Update() {
+
+        switch (Action) {
             case ActionPart.Wait:
                 WaitAction();
                 break;
@@ -51,31 +51,41 @@ public class Ants : MonoBehaviour
             case ActionPart.Death:
                 DeathAction();
                 break;
-        }        
+        }
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
+        if (vec.x == transform.position.x) {
+            stopTimer++;
+            if (stopTimer >= 10) {
+                stopTimer = 0;
+                speed_x *= -1;
+                var scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+            }
+        }
+        else {
+            stopTimer = 0;
+        }
+        vec = transform.position;
+
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         float rotation = rigidbody2D.rotation;
-        if (Mathf.Abs(rotation) > 45.0f)
-        {
+        if (Mathf.Abs(rotation) > 45.0f) {
             rigidbody2D.SetRotation(rigidbody2D.rotation > 0.0f ? 45.0f : -45.0f);
         }
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (player.RotationMode == true)
-            {
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Player") {
+            if (player.RotationMode == true) {
                 Action = ActionPart.Death;
             }
         }
 
-        if(collision.gameObject.tag == "Enemy") {
+        if (collision.gameObject.tag == "Enemy") {
             speed_x *= -1;
             var scale = transform.localScale;
             scale.x *= -1;
@@ -83,16 +93,7 @@ public class Ants : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.tag == "Grounds") {
-            speed_x *= -1;
-            var scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-        }
-    }
-
-    void WaitAction()
+void WaitAction()
     {
 
     }

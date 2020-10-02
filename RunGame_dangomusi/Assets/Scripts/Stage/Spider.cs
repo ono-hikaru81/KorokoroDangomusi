@@ -39,9 +39,13 @@ public class Spider : MonoBehaviour
 
     Vector2 atackPos;
 
+    int stopTimer = 0;
+    Vector2 vec;
+
     // Start is called before the first frame update
     void Start()
     {
+        vec = transform.position;
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
         atackPos = transform.position;
@@ -73,6 +77,23 @@ public class Spider : MonoBehaviour
                 Action = ActionPart.Death;
             }
         }
+    }
+
+    private void FixedUpdate() {
+        if (vec.x == transform.position.x) {
+            stopTimer++;
+            if (stopTimer >= 10) {
+                stopTimer = 0;
+                speed_x *= -1;
+                var scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+            }
+        }
+        else {
+            stopTimer = 0;
+        }
+        vec = transform.position;
     }
 
     void WaitAction()

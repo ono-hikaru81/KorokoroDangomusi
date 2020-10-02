@@ -48,9 +48,13 @@ public class Mole : MonoBehaviour
     Rigidbody2D rigidbody;
     BoxCollider2D boxCollider;
 
+    int stopTimer = 0;
+    Vector2 vec;
+
     // Start is called before the first frame update
     void Start()
     {
+        vec = transform.position;
         boxCollider = GetComponent<BoxCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
@@ -108,6 +112,23 @@ public class Mole : MonoBehaviour
             scale.x *= -1;
             transform.localScale = scale;
         }
+    }
+
+    private void FixedUpdate() {
+        if (vec.x == transform.position.x) {
+            stopTimer++;
+            if (stopTimer >= 10) {
+                stopTimer = 0;
+                speed_x *= -1;
+                var scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+            }
+        }
+        else {
+            stopTimer = 0;
+        }
+        vec = transform.position;
     }
 
     void WaitAction()

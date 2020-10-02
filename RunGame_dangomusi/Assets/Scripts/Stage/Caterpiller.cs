@@ -32,11 +32,15 @@ public class Caterpiller : MonoBehaviour
     float motiontimer = 0.0f;
     float pausetimer = 0.0f;
 
+    int stopTimer = 0;
+    Vector2 vec;
+
     GameObject needle;
 
     // Start is called before the first frame update
     void Start()
     {
+        vec = transform.position;
         rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
@@ -85,6 +89,23 @@ public class Caterpiller : MonoBehaviour
             scale.x *= -1;
             transform.localScale = scale;
         }
+    }
+
+    private void FixedUpdate() {
+        if (vec.x == transform.position.x) {
+            stopTimer++;
+            if (stopTimer >= 10) {
+                stopTimer = 0;
+                speed_x *= -1;
+                var scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+            }
+        }
+        else {
+            stopTimer = 0;
+        }
+        vec = transform.position;
     }
 
     void WaitAction()
