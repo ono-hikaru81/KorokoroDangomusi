@@ -45415,7 +45415,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.04000002, y: 0.04000002, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -45475,7 +45475,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.01
   m_ColliderPaths:
   - m_Collider: {fileID: 5488210676754826724}
     m_ColliderPaths:
