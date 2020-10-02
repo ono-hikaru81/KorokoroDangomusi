@@ -20,7 +20,7 @@ public class Needle : MonoBehaviour
     }
 
     void Update() {
-        transform.Translate(0.0f, 0.005f, 0.0f, Space.Self);
+        transform.Translate(0.0f, 0.01f, 0.0f, Space.Self);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
