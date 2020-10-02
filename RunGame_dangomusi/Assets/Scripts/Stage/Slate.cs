@@ -21,6 +21,8 @@ public class Slate : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        slatetext.text = text;
+        if (collision.tag == "Player") {
+            slatetext.text = text;
+        }
     }
 }

@@ -24,7 +24,7 @@ public class Caterpiller : MonoBehaviour
     ActionPart Action = ActionPart.Wait;
 
     // ケムシの速度
-    float speed_x = -1;
+    float speed_x = -0.7f;
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 

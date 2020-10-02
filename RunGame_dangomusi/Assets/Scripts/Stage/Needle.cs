@@ -16,7 +16,7 @@ public class Needle : MonoBehaviour
         else {
             Destroy(gameObject);
         }
-        Destroy(gameObject, 10.0f);
+        Destroy(gameObject, 15.0f);
     }
 
     void Update() {

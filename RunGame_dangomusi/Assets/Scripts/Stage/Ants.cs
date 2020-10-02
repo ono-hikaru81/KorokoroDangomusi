@@ -23,7 +23,7 @@ public class Ants : MonoBehaviour
     ActionPart Action = ActionPart.Wait;
 
     // アリの速度
-    float speed_x = -4;
+    float speed_x = -2;
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 

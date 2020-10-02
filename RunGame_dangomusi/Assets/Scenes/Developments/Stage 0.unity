@@ -170,6 +170,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.935122
       objectReference: {fileID: 0}
+    - target: {fileID: 341330184984967170, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: textObj
+      value: 
+      objectReference: {fileID: 1001376721}
     - target: {fileID: 811473729244528636, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -375,6 +380,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider
       objectReference: {fileID: 0}
+    - target: {fileID: 4860323880615360578, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: textObj
+      value: 
+      objectReference: {fileID: 1001376721}
     - target: {fileID: 4894383749567299127, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5700,6 +5710,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Grounds
       objectReference: {fileID: 0}
+    - target: {fileID: 8060942455257806326, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: textObj
+      value: 
+      objectReference: {fileID: 1001376721}
     - target: {fileID: 8225386815871125738, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -6137,6 +6152,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1001376721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2095162237176616749, guid: 968f947653cbb1049aeaca03882815a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7707037785775723206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1009878714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8355009201584678017, guid: 04ee8b71dcceef84eb66c02b3391418c,
@@ -6563,6 +6584,11 @@ PrefabInstance:
       propertyPath: UiStaminaGaugeObject
       value: 
       objectReference: {fileID: 7707037785775723207}
+    - target: {fileID: 8355009201584678017, guid: 04ee8b71dcceef84eb66c02b3391418c,
+        type: 3}
+      propertyPath: soundOnKill
+      value: 
+      objectReference: {fileID: 8300000, guid: 13e1e20deb8faa549888767c2e2f1980, type: 3}
     - target: {fileID: 8355009201818471658, guid: 04ee8b71dcceef84eb66c02b3391418c,
         type: 3}
       propertyPath: m_IsTrigger

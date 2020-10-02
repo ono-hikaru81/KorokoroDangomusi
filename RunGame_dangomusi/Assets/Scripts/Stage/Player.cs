@@ -26,6 +26,10 @@ namespace RunGame.Stage
         [SerializeField]
         private AudioClip soundOnDash = null;
 
+        // 敵撃破時のサウンド
+        [SerializeField]
+        private AudioClip soundOnKill = null;
+
         // スタミナゲージオブジェクト保存用
         public GameObject UiStaminaGaugeObject;
 
@@ -287,6 +291,14 @@ namespace RunGame.Stage
                     IsActive = false;
                     SceneController.Instance.GameOver();
                     Destroy(gameObject);
+                }
+                else {
+                    // サウンド再生
+                    if (audioSource.isPlaying) {
+                        audioSource.Stop();
+                    }
+                    audioSource.clip = soundOnKill;
+                    audioSource.Play();
                 }
             }
 
