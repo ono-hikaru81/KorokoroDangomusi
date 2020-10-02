@@ -32,6 +32,8 @@ namespace RunGame.Title
         public void OnClickStartButton()
         {
             PlayerPrefs.SetInt("isContinue", 1);
+            PlayerPrefs.SetFloat("PlayerPosX", 0.0f);
+            PlayerPrefs.SetFloat("PlayerPosY", 3.0f);
             PlayerPrefs.Save();
             SceneManager.LoadScene("Stage 0");
         }
