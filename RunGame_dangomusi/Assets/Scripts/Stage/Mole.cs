@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.U2D;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // <summary>
 /// 敵の『モグラ』を表します。
@@ -87,6 +88,7 @@ public class Mole : MonoBehaviour
 
                 if(hp <= 0) {
                     Destroy(gameObject);
+                    SceneManager.LoadScene("Ending");
                 }
             }
         }
