@@ -13,6 +13,8 @@ public class Ants : MonoBehaviour {
 
     Player player;
 
+    public bool isRotate = true;
+
     public enum ActionPart {
         Wait, // 待機モーション
         Raid, // 戦闘モーション
@@ -55,7 +57,7 @@ public class Ants : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (vec.x == transform.position.x) {
+        if (vec.x == transform.position.x && isRotate == true) {
             stopTimer++;
             if (stopTimer >= 10) {
                 stopTimer = 0;
@@ -93,7 +95,7 @@ public class Ants : MonoBehaviour {
         }
     }
 
-void WaitAction()
+    void WaitAction()
     {
 
     }
