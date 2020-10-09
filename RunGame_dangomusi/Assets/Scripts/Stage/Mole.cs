@@ -22,7 +22,7 @@ public class Mole : MonoBehaviour
     bool burrowsPosTrigger = false;
     bool burrowsColTrigger = false;
 
-    int hp = 3;
+    public int hp = 3;
 
     public enum ActionPart
     {
@@ -53,6 +53,10 @@ public class Mole : MonoBehaviour
     Vector2 vec;
 
     public bool invincible = false;
+
+    float throwingWait = 1.0f;
+
+    bool wait = false;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +95,7 @@ public class Mole : MonoBehaviour
                 hp -= 1;
                 StartCoroutine("InvincibleTime");
                 if(hp <= 1) {
+                    throwingWait = 0.5f;
                     speed_x *= 1.5f;
                 }
 
@@ -110,7 +115,7 @@ public class Mole : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (invincible == false) {
+        if (invincible == false && wait == false) {
             if (vec.x == transform.position.x) {
                 stopTimer++;
                 if (stopTimer >= 5) {
@@ -147,10 +152,13 @@ public class Mole : MonoBehaviour
                     else {
                         Throwing();
                     }
+                    wait = true;
                     motiontimer = 0;
                 }
                 else {
-                    Rush();
+                    if (wait == false) {
+                        Rush();
+                    }
                 }
                 break;
             case 3:
@@ -171,9 +179,7 @@ public class Mole : MonoBehaviour
     }
 
     void Throwing() {
-        GameObject Dirt = (GameObject)Resources.Load("Prefabs/Dirt");
-        var pos = transform.position;
-        Instantiate(Dirt, new Vector3 (pos.x, pos.y + 1), Quaternion.identity);
+        StartCoroutine("ThrowingCoroutines");
     }
 
     void Burrows() {
@@ -224,6 +230,14 @@ public class Mole : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         Action = ActionPart.Raid;
         invincible = false;
+    }
+
+    IEnumerator ThrowingCoroutines() {
+        yield return new WaitForSeconds(throwingWait);
+        GameObject Dirt = (GameObject)Resources.Load("Prefabs/Dirt");
+        var pos = transform.position;
+        Instantiate(Dirt, new Vector3(pos.x, pos.y + 1), Quaternion.identity);
+        wait = false;
     }
 
 }

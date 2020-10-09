@@ -310,6 +310,11 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3478543828559060011, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3478543828559060022, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -354,6 +359,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.9186725
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635666900654385580, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635666900654385580, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 3773727832028949588, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
@@ -6572,7 +6587,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.64
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6946,7 +6961,7 @@ PrefabInstance:
     - target: {fileID: 1310127157688456023, guid: bda2c6f0cc7935b4c8048003a8082436,
         type: 3}
       propertyPath: cameraOffset_Y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bda2c6f0cc7935b4c8048003a8082436, type: 3}
@@ -7188,6 +7203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6029453661863948067, guid: 04ee8b71dcceef84eb66c02b3391418c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7829347276191574621, guid: 04ee8b71dcceef84eb66c02b3391418c,
         type: 3}

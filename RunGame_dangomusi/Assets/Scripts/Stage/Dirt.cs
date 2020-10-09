@@ -10,22 +10,33 @@ public class Dirt : MonoBehaviour
 
     GameObject playerObj;
     Player player;
+    GameObject moleObj;
+    Mole mole;
+
+    float speed = 6;
 
     private void Start() {
-        Destroy(gameObject, 10);
+        Destroy(gameObject, 5);
+        moleObj = GameObject.Find("Mole");
+        if(moleObj != null) {
+            mole = moleObj.GetComponent<Mole>();
+        }
         playerObj = GameObject.Find("Player");
         if (playerObj != null) {
             player = playerObj.GetComponent<Player>();
         }
         rigidbody = GetComponent<Rigidbody2D>();
+        if(mole.hp <= 1) {
+            speed *= 1.5f;
+        }
         var velocity = rigidbody.velocity;
         velocity.y = 5;
         if (player != null) {
             if (player.transform.position.x < transform.position.x) {
-                velocity.x = -Random.Range(4.0f, 7.0f);
+                velocity.x = -speed;
             }
             else {
-                velocity.x = Random.Range(4.0f, 7.0f);
+                velocity.x = speed;
             }
         }
         rigidbody.velocity = velocity;
