@@ -271,9 +271,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   soundOnDash: {fileID: 8300000, guid: bb12485cddd7eee4eb0ebb425a257757, type: 3}
+  soundOnKill: {fileID: 0}
   UiStaminaGaugeObject: {fileID: 0}
   stamina: 10
   isGrounded: 1
+  rigidbody: {fileID: 0}
 --- !u!70 &5981534520564473086
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
