@@ -86,7 +86,7 @@ public class Mole : MonoBehaviour
 
         if (transform.position.y > pos.y + 3) {
             boxCollider.isTrigger = false;
-
+            invincible = false;
         }
     }
 
@@ -190,6 +190,7 @@ public class Mole : MonoBehaviour
 
     void Burrows() {
         // 地面に潜る
+        invincible = true;
         boxCollider.isTrigger = true;
         pos = transform.position;
         StartCoroutine("BurrowsCoroutines");
