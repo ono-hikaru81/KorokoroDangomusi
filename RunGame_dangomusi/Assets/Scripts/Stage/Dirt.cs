@@ -14,7 +14,9 @@ public class Dirt : MonoBehaviour
     private void Start() {
         Destroy(gameObject, 10);
         playerObj = GameObject.Find("Player");
-        player = playerObj.GetComponent<Player>();
+        if (playerObj != null) {
+            player = playerObj.GetComponent<Player>();
+        }
         rigidbody = GetComponent<Rigidbody2D>();
         var velocity = rigidbody.velocity;
         velocity.y = 5;

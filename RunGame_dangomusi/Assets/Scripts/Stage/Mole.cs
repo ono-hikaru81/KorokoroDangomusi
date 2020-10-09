@@ -1,9 +1,11 @@
 ﻿using RunGame.Stage;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.U2D;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 
 // <summary>
@@ -43,13 +45,14 @@ public class Mole : MonoBehaviour
 
     // 時間管理変数
     float motiontimer = 0.0f;
-    float burrowstimer = 0.0f;
 
     Rigidbody2D rigidbody;
     BoxCollider2D boxCollider;
 
     int stopTimer = 0;
     Vector2 vec;
+
+    public bool invincible = false;
 
     // Start is called before the first frame update
     void Start()
@@ -83,9 +86,10 @@ public class Mole : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (player.RotationMode == true)
+            if (player.RotationMode == true && invincible == false)
             {
                 hp -= 1;
+                StartCoroutine("InvincibleTime");
                 if(hp <= 1) {
                     speed_x *= 1.5f;
                 }
@@ -105,30 +109,23 @@ public class Mole : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.tag == "Grounds") {
-            speed_x *= -1;
-            var scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-        }
-    }
-
     private void FixedUpdate() {
-        if (vec.x == transform.position.x) {
-            stopTimer++;
-            if (stopTimer >= 10) {
-                stopTimer = 0;
-                speed_x *= -1;
-                var scale = transform.localScale;
-                scale.x *= -1;
-                transform.localScale = scale;
+        if (invincible == false) {
+            if (vec.x == transform.position.x) {
+                stopTimer++;
+                if (stopTimer >= 5) {
+                    stopTimer = 0;
+                    speed_x *= -1;
+                    var scale = transform.localScale;
+                    scale.x *= -1;
+                    transform.localScale = scale;
+                }
             }
+            else {
+                stopTimer = 0;
+            }
+            vec = transform.position;
         }
-        else {
-            stopTimer = 0;
-        }
-        vec = transform.position;
     }
 
     void WaitAction()
@@ -139,15 +136,17 @@ public class Mole : MonoBehaviour
     void RaidAction()
     {
         motiontimer += Time.deltaTime;
-        burrowstimer += Time.deltaTime;
         switch (hp) {
             case 1:
             case 2:
-                if (burrowstimer >= 10.0f) {
-                    Burrows();
-                }
-                else if (motiontimer >= 2.0f) {
-                    Throwing();
+                // 5秒ごとにランダムで投擲攻撃or突き攻撃を行う
+                if (motiontimer >= 5.0f) {
+                    if(UnityEngine.Random.Range(0, 2) == 0) {
+                        Burrows();
+                    }
+                    else {
+                        Throwing();
+                    }
                     motiontimer = 0;
                 }
                 else {
@@ -173,7 +172,8 @@ public class Mole : MonoBehaviour
 
     void Throwing() {
         GameObject Dirt = (GameObject)Resources.Load("Prefabs/Dirt");
-        Instantiate(Dirt, transform.position, Quaternion.identity);
+        var pos = transform.position;
+        Instantiate(Dirt, new Vector3 (pos.x, pos.y + 1), Quaternion.identity);
     }
 
     void Burrows() {
@@ -198,7 +198,6 @@ public class Mole : MonoBehaviour
             boxCollider.isTrigger = false;
             burrowsPosTrigger = false;
             burrowsColTrigger = false;
-            burrowstimer = 0;
         }
     }
 
@@ -217,6 +216,14 @@ public class Mole : MonoBehaviour
 
     private void OnBecameVisible() {
         Action = ActionPart.Raid;
+    }
+
+    IEnumerator InvincibleTime() {
+        invincible = true;
+        Action = ActionPart.Wait;
+        yield return new WaitForSeconds(3.0f);
+        Action = ActionPart.Raid;
+        invincible = false;
     }
 
 }

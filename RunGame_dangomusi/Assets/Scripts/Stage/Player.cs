@@ -36,6 +36,9 @@ namespace RunGame.Stage
         // コロコロモードのスタミナ
         public float stamina = 10.0f;
 
+        // 無敵判定
+        public bool invincible = false;
+
         /// <summary>
         /// プレイ中の場合はtrue、ステージ開始前またはゲームオーバー時にはfalse
         /// </summary>
@@ -229,6 +232,14 @@ namespace RunGame.Stage
         /// </summary>
         private void FixedUpdate()
         {
+            // デバッグ用 ボス前に移動する
+            if (Input.GetKeyDown(KeyCode.Z)) {
+                var pos = transform.position;
+                pos.x = 310;
+                pos.y = -47;
+                transform.position = pos;
+            }
+
             // 着地判定
             // ワールド空間の位置へ移動
             var minPosition = groundCheckA + transform.position;
@@ -284,9 +295,9 @@ namespace RunGame.Stage
         private void OnTriggerEnter2D(Collider2D collider)
         {
             // 敵の当たり判定
-            if (collider.tag == "Enemy" || collider.tag == "Trap")
+            if (collider.tag == "Enemy" || collider.tag == "Trap" || collider.tag == "Boss")
             {
-                if (RotationMode == false)
+                if (RotationMode == false && invincible == false)
                 {
                     IsActive = false;
                     SceneController.Instance.GameOver();

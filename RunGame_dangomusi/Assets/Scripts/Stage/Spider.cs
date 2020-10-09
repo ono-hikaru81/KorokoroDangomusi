@@ -34,7 +34,7 @@ public class Spider : MonoBehaviour
     float speed_z = 0.0f;
 
     // 時間管理変数
-    float motiontimer = 3.0f;
+    float motiontimer = 5.0f;
     float pausetimer = 0.0f;
 
     Vector2 atackPos;

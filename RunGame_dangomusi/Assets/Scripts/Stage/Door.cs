@@ -43,6 +43,7 @@ public class Door : MonoBehaviour
             if (transform.position.y <= pos.y) {
                 closeTrigger = false;
                 player.rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                player.invincible = false;
             }
         }
     }
@@ -50,6 +51,7 @@ public class Door : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") {
             if (activeTrigger) {
+                player.invincible = true;
                 player.rigidbody.bodyType = RigidbodyType2D.Static;
                 pos = transform.position;
                 playerPos = player.transform.position;
