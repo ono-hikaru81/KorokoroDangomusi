@@ -9,6 +9,10 @@ namespace RunGame.Stage
     /// </summary>
     public class ChaseCamera : MonoBehaviour
     {
+        // 表示範囲のずらす量
+        public float cameraOffset_X = 0;
+        public float cameraOffset_Y = 0;
+
         // 追尾対象(プレイヤー)
         Transform target;
 
@@ -27,8 +31,8 @@ namespace RunGame.Stage
         void Update() {
             if (target != null) {
                 var position = Camera.main.transform.position;
-                position.x = target.position.x;
-                position.y = target.position.y;
+                position.x = target.position.x + cameraOffset_X;
+                position.y = target.position.y + cameraOffset_Y;
                 //position.z = target.position.z;
                 Camera.main.transform.position = position;
             }
