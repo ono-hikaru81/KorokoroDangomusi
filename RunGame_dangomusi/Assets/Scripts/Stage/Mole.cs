@@ -19,9 +19,6 @@ public class Mole : MonoBehaviour
 
     Vector2 pos;
 
-    bool burrowsPosTrigger = false;
-    bool burrowsColTrigger = false;
-
     public int hp = 3;
 
     public enum ActionPart
@@ -55,6 +52,7 @@ public class Mole : MonoBehaviour
     public bool invincible = false;
 
     float throwingWait = 1.0f;
+    float burrowsWait = 3.0f;
 
     bool wait = false;
 
@@ -84,6 +82,12 @@ public class Mole : MonoBehaviour
                 DeathAction();
                 break;
         }
+        
+
+        if (transform.position.y > pos.y + 3) {
+            boxCollider.isTrigger = false;
+
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -97,6 +101,7 @@ public class Mole : MonoBehaviour
                 if(hp <= 1) {
                     throwingWait = 0.5f;
                     speed_x *= 1.5f;
+                    burrowsWait = 1.0f;
                 }
 
                 if(hp <= 0) {
@@ -146,10 +151,11 @@ public class Mole : MonoBehaviour
             case 2:
                 // 5秒ごとにランダムで投擲攻撃or突き攻撃を行う
                 if (motiontimer >= 5.0f) {
-                    if(UnityEngine.Random.Range(0, 2) == 0) {
+                    int temp = UnityEngine.Random.Range(0, 2);
+                    if (temp == 1) {
                         Burrows();
                     }
-                    else {
+                    else if(temp == 0){
                         Throwing();
                     }
                     wait = true;
@@ -183,28 +189,10 @@ public class Mole : MonoBehaviour
     }
 
     void Burrows() {
-        if(burrowsColTrigger == false) {
-            boxCollider.isTrigger = true;
-            pos = transform.position;
-            burrowsColTrigger = true;
-        }
-
-        if (transform.position.y < pos.y - 5 && burrowsPosTrigger == false) {
-            var position = transform.position;
-            position.x = player.transform.position.x;
-            transform.position = position;
-
-            var velocity = rigidbody.velocity;
-            velocity.y = 12;
-            rigidbody.velocity = velocity;
-            burrowsPosTrigger = true;
-        }
-
-        if (transform.position.y > pos.y + 5) {
-            boxCollider.isTrigger = false;
-            burrowsPosTrigger = false;
-            burrowsColTrigger = false;
-        }
+        // 地面に潜る
+        boxCollider.isTrigger = true;
+        pos = transform.position;
+        StartCoroutine("BurrowsCoroutines");
     }
 
     void TurnOver() {
@@ -240,4 +228,19 @@ public class Mole : MonoBehaviour
         wait = false;
     }
 
+    IEnumerator BurrowsCoroutines() {
+        yield return new WaitForSeconds(burrowsWait);
+        // プレイヤーのx座標に移動して飛び出す
+        if (transform.position.y < pos.y - 5) {
+            var position = transform.position;
+            position.x = player.transform.position.x;
+            position.y = pos.y - 3;
+            transform.position = position;
+
+            var velocity = rigidbody.velocity;
+            velocity.y = 20;
+            rigidbody.velocity = velocity;
+            wait = false;
+        }
+    }
 }

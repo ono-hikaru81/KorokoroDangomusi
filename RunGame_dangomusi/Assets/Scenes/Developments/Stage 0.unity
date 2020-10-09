@@ -310,10 +310,15 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3478543828559060010, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3478543828559060011, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3478543828559060022, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
@@ -6435,7 +6440,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3478543828559060011, guid: d3b9b63ebeb4454488fc595330aba666, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d3b9b63ebeb4454488fc595330aba666, type: 3}
 --- !u!1 &519420028
 GameObject:
