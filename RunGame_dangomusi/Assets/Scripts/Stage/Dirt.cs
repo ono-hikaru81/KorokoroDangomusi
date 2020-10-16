@@ -1,7 +1,7 @@
 ﻿using RunGame.Stage;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.AssetImporters;
+using UnityEditor;
 using UnityEngine;
 
 public class Dirt : MonoBehaviour

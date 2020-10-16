@@ -1,5 +1,4 @@
-﻿using Microsoft.Unity.VisualStudio.Editor;
-using RunGame.Stage;
+﻿using RunGame.Stage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
