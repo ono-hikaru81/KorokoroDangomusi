@@ -173,58 +173,49 @@ namespace RunGame.Stage
                 }
             }
 
-            // 接地している場合
-            //if (isGrounded)
-            //{
-                
-                // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
-                if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f)
+            // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
+            if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f)
+            {
+                // スタミナが減少
+                stamina -= Time.deltaTime * 2;
+                // スタミナゲージ更新
+                UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
+                // x軸方向の移動
+                var velocity = rigidbody.velocity;
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    // スタミナが減少
-                    stamina -= Time.deltaTime * 2;
-                    // スタミナゲージ更新
-                    UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
-                    // x軸方向の移動
-                    var velocity = rigidbody.velocity;
-                    if(Input.GetKey(KeyCode.RightArrow))
-                    {
-                        velocity.x = dashSpeed;
-                    }
-                    else if(Input.GetKey(KeyCode.LeftArrow))
-                    {
-                        velocity.x = -dashSpeed;
-                    }
-                    rigidbody.velocity = velocity;
-                    // 通常状態からダッシュ状態に切り替える場合
-                    if (!RotationMode) {
-                        RotationMode = true;
-                    }
+                    velocity.x = dashSpeed;
                 }
-                // '下'キーが押されていないかつスタミナが減少しているときは回復する
-                else if (Input.GetKey(KeyCode.DownArrow) == false && stamina < 10.0f)
+                else if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    RotationMode = false;
-                    stamina += Time.deltaTime * 2;
-                    // スタミナゲージ更新
-                    UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
+                    velocity.x = -dashSpeed;
                 }
-                else
-                {
-                    RotationMode = false;
-                //    // x軸方向の移動
-                //    var velocity = rigidbody.velocity;
-                //    velocity.x = -speed;
-                //    rigidbody.velocity = velocity;
+                rigidbody.velocity = velocity;
+                // 通常状態からダッシュ状態に切り替える場合
+                if (!RotationMode) {
+                    RotationMode = true;
                 }
-            //}
-            // 空中状態の場合
-            //else
-            //{
-            //    if (RotationMode)
-            //    {
-            //        RotationMode = false;
-            //    }
-            //}
+            }
+            // '下'キーが押されていないかつスタミナが減少しているときは回復する
+            else if (Input.GetKey(KeyCode.DownArrow) == false && stamina < 10.0f)
+            {
+                RotationMode = false;
+                stamina += Time.deltaTime * 2;
+                // スタミナゲージ更新
+                UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
+            }
+            else
+            {
+                RotationMode = false;
+            }
+
+            // 自滅処理
+            if(Input.GetKey(KeyCode.Q))
+            {
+                IsActive = false;
+                SceneController.Instance.GameOver();
+                Destroy(gameObject);
+            }
         }
 
         /// <summary>
