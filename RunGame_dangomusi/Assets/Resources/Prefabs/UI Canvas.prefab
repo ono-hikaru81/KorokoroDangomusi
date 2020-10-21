@@ -491,7 +491,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2095162238219115408}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -958,8 +958,8 @@ RectTransform:
   m_Children:
   - {fileID: 2095162237193387209}
   - {fileID: 2095162236840617694}
-  - {fileID: 2095162237176616748}
   - {fileID: 2153369466789410822}
+  - {fileID: 2095162237176616748}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1352,7 +1352,7 @@ RectTransform:
   - {fileID: 4887593703811330204}
   - {fileID: 8740820006936450796}
   m_Father: {fileID: 2095162238219115408}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1421,5 +1421,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca62a700a6229d43b3e919362619f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StaminaImages: {fileID: 0}
-  Player: {fileID: 9048238283160158231, guid: 04ee8b71dcceef84eb66c02b3391418c, type: 3}
