@@ -106,7 +106,7 @@ public class Mole : MonoBehaviour
 
                 if(hp <= 0) {
                     Destroy(gameObject);
-                    SceneManager.LoadScene("Ending");
+                    SceneManager.LoadScene( "HappyEndMovie" );
                 }
             }
         }

@@ -93,19 +93,18 @@ namespace RunGame.Title
         /// </summary>
         public void OnClickStartButton()
         {
-            PlayerPrefs.SetInt("isContinue", 1);
+            PlayerPrefs.SetInt("isContinue", 0);
             PlayerPrefs.SetFloat("PlayerPosX", 0.0f);
             PlayerPrefs.SetFloat("PlayerPosY", 3.0f);
             PlayerPrefs.Save();
-            SceneManager.LoadScene("Stage 0");
+            SceneManager.LoadScene("OpeningMovie");
         }
 
         public void OnClickLoadButton() {
 
-            PlayerPrefs.SetInt("isContinue", 0);
+            PlayerPrefs.SetInt("isContinue", 1);
             PlayerPrefs.Save();
             SceneManager.LoadScene("Stage 0");
         }
-
     }
 }

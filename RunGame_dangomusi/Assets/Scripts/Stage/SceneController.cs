@@ -75,12 +75,12 @@ namespace RunGame.Stage
             // データ読み込み
             var pos = player.transform.position;
             switch (PlayerPrefs.GetInt("isContinue")) {
-                case 0:
+                case 1:
                     pos.x = PlayerPrefs.GetFloat("PlayerPosX", 0.0f);
                     pos.y = PlayerPrefs.GetFloat("PlayerPosY", 3.0f);
                     break;
                 default:
-                case 1:
+                case 0:
                     pos.x = 0.0f;
                     pos.y = 3.0f;
                     break;
@@ -215,10 +215,10 @@ namespace RunGame.Stage
         IEnumerator OnStageClear()
         {
             // ベストタイムを更新
-            if (PlayTime < GameController.Instance.BestTime)
-            {
-                GameController.Instance.BestTime = PlayTime;
-            }
+            //if (PlayTime < GameController.Instance.BestTime)
+            //{
+            //    GameController.Instance.BestTime = PlayTime;
+            //}
             UiManager.Instance.ShowMessage("CLEAR!");
             yield return new WaitForSeconds(1);
             // 入力を待ち受けるために無限ループ
@@ -228,9 +228,9 @@ namespace RunGame.Stage
                 if (Input.GetKeyUp(KeyCode.Return))
                 {
                     // ステージ番号を伝えてから「Result」を読み込む
-                    Result.SceneController.StageNo = StageNo;
-                    Result.SceneController.ClearTime = PlayTime;
-                    SceneManager.LoadScene("Result");
+                    //Result.SceneController.StageNo = StageNo;
+                    //Result.SceneController.ClearTime = PlayTime;
+                    SceneManager.LoadScene( "HappyEndMovie" );
                     break;
                 }
                 yield return null;  // 次のフレームまで待機
