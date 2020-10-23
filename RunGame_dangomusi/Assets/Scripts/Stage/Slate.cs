@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RunGame.Stage;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,19 +11,31 @@ public class Slate : MonoBehaviour
     public GameObject textObj;
     Text slatetext;
 
+    public Image popupWindow;
+
+    float timer;
+
     private void Start() {
         slatetext = textObj.GetComponent<Text>();
     }
 
     private void Update() {
+        timer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Return)) {
             slatetext.text = " ";
+            popupWindow.color = new Color( 0.0f, 0.0f, 0.0f, 0.0f );
+            Time.timeScale = 1.0f;
+            timer = 0;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Player") {
-            slatetext.text = text;
+        if ( timer >= 1.0f ) {
+            if ( collision.tag == "Player" ) {
+                slatetext.text = text;
+                popupWindow.color = new Color( 0.0f, 0.0f, 0.0f, 0.5f );
+                Time.timeScale = 0.0f;
+            }
         }
     }
 }
