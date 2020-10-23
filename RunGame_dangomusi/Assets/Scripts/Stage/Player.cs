@@ -160,17 +160,21 @@ namespace RunGame.Stage
             }
 
             // '十字'キーが押されているときの移動させる処理
-            if (RotationMode == false) {
-                if (Input.GetKey(KeyCode.RightArrow)) {
+            if (Input.GetKey(KeyCode.RightArrow)) {
+                if ( RotationMode == false ) {
                     var velocity = rigidbody.velocity;
                     velocity.x = speed;
                     rigidbody.velocity = velocity;
                 }
-                else if (Input.GetKey(KeyCode.LeftArrow)) {
+                transform.localScale = new Vector3( 1.0f, 1.0f, 1.0f );
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow)) {
+                if ( RotationMode == false ) {
                     var velocity = rigidbody.velocity;
                     velocity.x = -speed;
                     rigidbody.velocity = velocity;
                 }
+                transform.localScale = new Vector3( -1.0f, 1.0f, 1.0f );
             }
 
             // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
