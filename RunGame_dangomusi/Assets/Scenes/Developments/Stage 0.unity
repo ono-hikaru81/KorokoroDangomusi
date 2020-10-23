@@ -16957,11 +16957,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95567199b2ba57149b4883d591049d7d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 244c2d7fab644da46829e05d54a6dde1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -17393,6 +17393,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1009878714}
+    - target: {fileID: 1310127157688456020, guid: bda2c6f0cc7935b4c8048003a8082436,
+        type: 3}
+      propertyPath: NormalStageBgm
+      value: 
+      objectReference: {fileID: 8300000, guid: 244c2d7fab644da46829e05d54a6dde1, type: 3}
+    - target: {fileID: 1310127157688456020, guid: bda2c6f0cc7935b4c8048003a8082436,
+        type: 3}
+      propertyPath: FinishStageBgm
+      value: 
+      objectReference: {fileID: 8300000, guid: 244c2d7fab644da46829e05d54a6dde1, type: 3}
     - target: {fileID: 1310127157688456021, guid: bda2c6f0cc7935b4c8048003a8082436,
         type: 3}
       propertyPath: m_LocalPosition.x

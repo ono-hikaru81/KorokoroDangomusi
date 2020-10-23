@@ -13,6 +13,7 @@ namespace RunGame.Stage
     /// <summary>
     /// 『ステージ画面』のシーン遷移を制御します。
     /// </summary>
+    /// 
     public class SceneController : MonoBehaviour
     {
         #region インスタンスへのstaticなアクセスポイント
@@ -41,7 +42,10 @@ namespace RunGame.Stage
             set { stageNo = value; }
         }
         private static int stageNo = 0;
-        
+
+        public AudioClip NormalStageBgm;
+        public AudioClip FinishStageBgm;
+
         /// <summary>
         /// プレハブからステージを生成する場合はtrueを指定します。
         /// </summary>
@@ -101,12 +105,12 @@ namespace RunGame.Stage
             if (stageNo == GameController.Instance.StageNames.Length - 1)
             {
                 // 最終ステージの場合
-                clip = Resources.Load<AudioClip>("bgm_02");
+                clip = FinishStageBgm;
             }
             else
             {
                 // 通常ステージの場合
-                clip = Resources.Load<AudioClip>("bgm_01");
+                clip = NormalStageBgm;
             }
             var bgmAudio = Camera.main.GetComponent<AudioSource>();
             bgmAudio.clip = clip;
