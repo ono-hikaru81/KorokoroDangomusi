@@ -63,11 +63,17 @@ public class PosionBall : MonoBehaviour
         if (collision.gameObject.tag == "Grounds") {
             rigidbody.bodyType = RigidbodyType2D.Static;
             atackTrigger = true;
-            atackPos1.y = transform.position.y - 0.2f;
-            atackPos2.y = transform.position.y - 0.2f;
+            atackPos1.y = transform.position.y - 0.17f;
+            atackPos2.y = transform.position.y - 0.17f;
             atackPos1.x = transform.position.x;
             atackPos2.x = transform.position.x;
-            Destroy(gameObject, 0.3f);
+            Destroy( gameObject, 0.3f );
+        }
+
+        if ( collision.gameObject.tag == "Player" ||
+             collision.gameObject.tag == "Enemy" || 
+             collision.gameObject.tag == "Trap" ) {
+            Destroy( gameObject );
         }
     }
 
