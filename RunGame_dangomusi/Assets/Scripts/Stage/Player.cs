@@ -227,14 +227,6 @@ namespace RunGame.Stage
         /// </summary>
         private void FixedUpdate()
         {
-            // デバッグ用 ボス前に移動する
-            if (Input.GetKeyDown(KeyCode.Z)) {
-                var pos = transform.position;
-                pos.x = 310;
-                pos.y = -47;
-                transform.position = pos;
-            }
-
             // 着地判定
             // ワールド空間の位置へ移動
             var minPosition = groundCheckA + transform.position;

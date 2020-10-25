@@ -6,24 +6,17 @@ using UnityEngine;
 
 public class Block_Break : MonoBehaviour
 {
-    GameObject playerObj;
-
-    Player player;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerObj = GameObject.Find("Player");
-        player = playerObj.GetComponent<Player>();
-    }
+    float alpha = 1.0f;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (player.RotationMode == true)
+            if ( GameObject.Find( "Player" ).GetComponent<Player>().RotationMode == true )
             {
-                Destroy(gameObject);
+                GetComponent<Animator>().SetTrigger( "AnimationTrigger" );
+                GetComponent<BoxCollider2D>().isTrigger = true;
+                Destroy(gameObject, 1.0f);
             }
         }
     }
