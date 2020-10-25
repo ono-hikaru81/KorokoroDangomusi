@@ -756,7 +756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313fa76f10b28c54aa93783e49e8ed98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: {fileID: 2112981492}
+  buttons:
+  - {fileID: 2112981492}
+  - {fileID: 506285279}
   selectedScale: {x: 1.1, y: 1.1, z: 1}
 --- !u!850595691 &1705721653
 LightingSettings:
