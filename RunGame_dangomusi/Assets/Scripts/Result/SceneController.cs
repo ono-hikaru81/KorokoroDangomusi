@@ -93,7 +93,7 @@ namespace RunGame.Result
                 if (nextStageNo < stageCount) {
                     // 『ステージ画面』へシーン遷移
                     Stage.SceneController.StageNo = nextStageNo;
-                    SceneManager.LoadScene("Stage");
+                    SceneManager.LoadScene("GameClear");
                 }
                 // 最終ステージをクリアーした場合
                 else {

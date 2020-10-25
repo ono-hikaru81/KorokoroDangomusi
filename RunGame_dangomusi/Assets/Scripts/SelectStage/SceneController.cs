@@ -42,7 +42,7 @@ namespace RunGame.SelectStage
             if (Input.GetKeyUp(KeyCode.Return)) {
                 // 『ステージ画面』へシーン遷移
                 Stage.SceneController.StageNo = selectedIndex;
-                SceneManager.LoadScene("Stage");
+                SceneManager.LoadScene("Stage 0");
                 return;
             }
             // 左カーソルキーが押された場合
