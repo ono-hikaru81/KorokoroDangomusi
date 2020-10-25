@@ -17735,7 +17735,58 @@ PrefabInstance:
     - target: {fileID: 2095162236583979026, guid: 968f947653cbb1049aeaca03882815a8,
         type: 3}
       propertyPath: m_Text
-      value: RETRY
+      value: "\u3064\u3065\u304D\u304B\u3089"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236583979026, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236583979026, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236583979026, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236583979026, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236583979026, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 2095162236840617693, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 641265db27221c240a682a87b0a71036,
+        type: 3}
+    - target: {fileID: 2095162236840617693, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236840617693, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236840617693, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162236840617693, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2095162237176616748, guid: 968f947653cbb1049aeaca03882815a8,
         type: 3}
@@ -17761,6 +17812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FillAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095162237989478015, guid: 968f947653cbb1049aeaca03882815a8,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u30BF\u30A4\u30C8\u30EB\u3078"
       objectReference: {fileID: 0}
     - target: {fileID: 2153369466789410822, guid: 968f947653cbb1049aeaca03882815a8,
         type: 3}
