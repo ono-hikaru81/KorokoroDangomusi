@@ -34,7 +34,7 @@ public class Slate : MonoBehaviour
             if ( collision.tag == "Player" ) {
                 StartCoroutine( "DeleteText" );
                 slatetext.text = text;
-                popupWindow.color = new Color( 0.0f, 0.0f, 0.0f, 0.5f );
+                popupWindow.color = new Color( 0.0f, 0.0f, 0.0f, 0.75f );
                 Time.timeScale = 0.01f;
             }
         }

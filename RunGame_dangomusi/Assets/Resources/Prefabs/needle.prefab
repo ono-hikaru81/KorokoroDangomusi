@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1463655667618832044}
   - component: {fileID: 2743135149075181888}
   - component: {fileID: 630223885493416909}
-  - component: {fileID: 5611814251323103769}
+  - component: {fileID: 5344138200651269604}
   m_Layer: 0
   m_Name: needle
   m_TagString: Trap
@@ -118,7 +118,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &5611814251323103769
+--- !u!60 &5344138200651269604
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,14 +128,14 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1.08, y: 1.08}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -143,11 +143,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.058828354, y: -0.09165728}
-      - {x: -0.10047447, y: -0.16}
-      - {x: 0.10047447, y: -0.15837291}
-      - {x: 0.06334591, y: -0.10277367}
-      - {x: 0.041897886, y: -0.040982023}
-      - {x: 0.013704106, y: 0.16}
-      - {x: -0.013965644, y: 0.16000012}
-      - {x: -0.043524854, y: -0.037727848}
+    - - {x: 0.11, y: -0.19999999}
+      - {x: 0.08, y: 0.06}
+      - {x: 0.04, y: 0.42}
+      - {x: 0.02, y: 0.53999996}
+      - {x: -0.03, y: 0.53999996}
+      - {x: -0.04, y: 0.5}
+      - {x: -0.14999999, y: -0.44}
+      - {x: -0.14999999, y: -0.52}
+      - {x: -0.13, y: -0.53999996}
+      - {x: 0.12, y: -0.53999996}
+      - {x: 0.14, y: -0.52}
+      - {x: 0.14, y: -0.45}
