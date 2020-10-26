@@ -123,9 +123,9 @@ public class Caterpiller : MonoBehaviour
     void RaidAction()
     {
         if (needle != null) {
-            Instantiate(needle, transform.position, Quaternion.Euler(0, 0, 180));
-            Instantiate(needle, transform.position, Quaternion.Euler(0, 0, 150));
-            Instantiate(needle, transform.position, Quaternion.Euler(0, 0, 210));
+            Instantiate(needle, new Vector3( transform.position.x, transform.position.y - 0.3f ), Quaternion.Euler(0, 0, 180));
+            Instantiate(needle, new Vector3( transform.position.x, transform.position.y - 0.3f ), Quaternion.Euler(0, 0, 150));
+            Instantiate(needle, new Vector3( transform.position.x, transform.position.y - 0.3f ), Quaternion.Euler(0, 0, 210));
         }
         Action = ActionPart.Wait;
     }
