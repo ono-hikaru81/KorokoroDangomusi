@@ -26,9 +26,6 @@ public class Ants : MonoBehaviour {
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 
-    int stopTimer = 0;
-    Vector2 vec;
-
     Rigidbody2D rigidbody;
     
     public AudioClip SE_death;
@@ -37,7 +34,6 @@ public class Ants : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        vec = transform.position;
         rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
@@ -60,20 +56,6 @@ public class Ants : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (vec.x == transform.position.x && isRotate == true) {
-            stopTimer++;
-            if (stopTimer >= 10) {
-                stopTimer = 0;
-                speed_x *= -1;
-                var scale = transform.localScale;
-                scale.x *= -1;
-                transform.localScale = scale;
-            }
-        }
-        else {
-            stopTimer = 0;
-        }
-        vec = transform.position;
 
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         float rotation = rigidbody2D.rotation;
@@ -96,7 +78,8 @@ public class Ants : MonoBehaviour {
                 }
             }
 
-            if ( collision.gameObject.tag == "Enemy" ) {
+            if ( collision.gameObject.tag == "Wall" ||
+                 collision.gameObject.tag == "Enemy" ) {
                 speed_x *= -1;
                 var scale = transform.localScale;
                 scale.x *= -1;
