@@ -14,6 +14,7 @@ public class Caterpiller : MonoBehaviour
     Player player;
     Rigidbody2D rigidbody;
 
+    public AudioClip SE_death;
 
     public enum ActionPart
     {
@@ -36,6 +37,8 @@ public class Caterpiller : MonoBehaviour
     Vector2 vec;
 
     GameObject needle;
+
+    SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -66,11 +69,15 @@ public class Caterpiller : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (player.RotationMode == true)
-            {
-                Action = ActionPart.Death;
+        if ( tag == "Enemy" ) {
+            if ( collision.gameObject.tag == "Player" ) {
+                if ( player.RotationMode == true ) {
+                    GetComponent<AudioSource>().clip = SE_death;
+                    GetComponent<AudioSource>().Play();
+                    tag = "Dead";
+                    GetComponent<BoxCollider2D>().isTrigger = true;
+                    Action = ActionPart.Death;
+                }
             }
         }
 
@@ -132,7 +139,11 @@ public class Caterpiller : MonoBehaviour
 
     void DeathAction()
     {
-        Destroy(gameObject);
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.color = new Color( sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a - 0.01f );
+        if ( sprite.color.a < 0 ) {
+            Destroy( gameObject );
+        }
     }
 
     private void OnBecameVisible() {

@@ -20,6 +20,14 @@ public class MovieController : MonoBehaviour {
     };
     FadeMode fademode = FadeMode.None;
 
+    public AudioClip openingBgm;
+
+    private void Start () {
+        var bgmAudio = Camera.main.GetComponent<AudioSource>();
+        bgmAudio.clip = openingBgm;
+        bgmAudio.Play();
+    }
+
     private void FixedUpdate () {
         timeCounter += Time.deltaTime;
 

@@ -28,11 +28,17 @@ namespace RunGame.Title
         // 現在選択されているボタンを示すインデックス
         int selectedIndex = 0;
 
+        public AudioClip titleBgm;
+
         // Start is called before the first frame update
         void Start()
         {
             // GameControllerからステージ名一覧を取得
             var stageNames = GameController.Instance.StageNames;
+
+            var bgmAudio = Camera.main.GetComponent<AudioSource>();
+            bgmAudio.clip = titleBgm;
+            bgmAudio.Play();
         }
 
         // Update is called once per frame

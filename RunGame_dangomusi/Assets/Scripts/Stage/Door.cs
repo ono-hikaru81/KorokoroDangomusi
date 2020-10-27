@@ -17,6 +17,8 @@ public class Door : MonoBehaviour
     GameObject playerObj;
     Player player;
 
+    public AudioClip SE_door;
+
     private void Start() {
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
@@ -44,6 +46,7 @@ public class Door : MonoBehaviour
                 closeTrigger = false;
                 player.rigidbody.bodyType = RigidbodyType2D.Dynamic;
                 player.invincible = false;
+                GetComponent<AudioSource>().Stop();
             }
         }
     }
@@ -51,6 +54,8 @@ public class Door : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") {
             if (activeTrigger) {
+                GetComponent<AudioSource>().clip = SE_door;
+                GetComponent<AudioSource>().Play();
                 player.invincible = true;
                 player.rigidbody.bodyType = RigidbodyType2D.Static;
                 pos = transform.position;

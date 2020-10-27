@@ -17,8 +17,14 @@ public class MovieManager : MonoBehaviour {
 
     int spriteCount = 0;
 
+    public AudioClip endingBgm;
+
     private void Start () {
         imageObj.sprite = sprite[spriteCount];
+
+        var bgmAudio = Camera.main.GetComponent<AudioSource>();
+        bgmAudio.clip = endingBgm;
+        bgmAudio.Play();
     }
 
     private void FixedUpdate () {

@@ -10,6 +10,8 @@ public class Spring : MonoBehaviour
     GameObject playerObj;
     Player player;
 
+    public AudioClip SE_jump;
+
     private void Start() {
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<Player>();
@@ -26,6 +28,8 @@ public class Spring : MonoBehaviour
         }
 
         void Jump () {
+            GetComponent<AudioSource>().clip = SE_jump;
+            GetComponent<AudioSource>().Play();
             var velocity = collider.attachedRigidbody.velocity;
             velocity.y = springPower;
             collider.attachedRigidbody.velocity = velocity;

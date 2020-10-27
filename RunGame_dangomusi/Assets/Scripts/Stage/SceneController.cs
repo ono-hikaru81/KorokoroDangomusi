@@ -43,8 +43,10 @@ namespace RunGame.Stage
         }
         private static int stageNo = 0;
 
-        public AudioClip NormalStageBgm;
-        public AudioClip FinishStageBgm;
+        public AudioClip normalStageBgm;
+        public AudioClip gameOverBgm;
+
+        public GameObject mole;
 
         /// <summary>
         /// プレハブからステージを生成する場合はtrueを指定します。
@@ -99,21 +101,8 @@ namespace RunGame.Stage
                 Instantiate(stage);
             }
 
-            // それぞれのステージ用のBGMを再生
-            AudioClip clip = null;
-            // bgmを読み込む
-            if (stageNo == GameController.Instance.StageNames.Length - 1)
-            {
-                // 最終ステージの場合
-                clip = FinishStageBgm;
-            }
-            else
-            {
-                // 通常ステージの場合
-                clip = NormalStageBgm;
-            }
             var bgmAudio = Camera.main.GetComponent<AudioSource>();
-            bgmAudio.clip = clip;
+            bgmAudio.clip = normalStageBgm;
             bgmAudio.Play();
 
 //            StartCoroutine(OnStart());
@@ -209,6 +198,10 @@ namespace RunGame.Stage
                 StopCoroutine(playState);
             }
 
+            var bgmAudio = Camera.main.GetComponent<AudioSource>();
+            bgmAudio.clip = gameOverBgm;
+            bgmAudio.loop = false;
+            bgmAudio.Play();
             player.IsActive = false;
             UiManager.Instance.GameOver.Show();
         }

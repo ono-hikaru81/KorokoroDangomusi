@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
@@ -21,13 +21,16 @@ public class Mole : MonoBehaviour
 
     public int hp = 3;
 
+    public AudioClip SE_damage;
+    public AudioClip SE_death;
+
     public enum ActionPart
     {
         Wait, // 待機モーション
         Raid, // 戦闘モーション
         Death, // 死亡モーション
     }
-    ActionPart Action = ActionPart.Wait;
+    public ActionPart Action = ActionPart.Wait;
 
     public enum LookingDirection {
         Left,
@@ -55,6 +58,10 @@ public class Mole : MonoBehaviour
     float burrowsWait = 3.0f;
 
     bool wait = false;
+
+    public AudioClip bossBgm;
+
+    bool onceLoad = false;
 
     // Start is called before the first frame update
     void Start()
@@ -97,6 +104,10 @@ public class Mole : MonoBehaviour
             if (player.RotationMode == true && invincible == false)
             {
                 hp -= 1;
+
+                GetComponent<AudioSource>().clip = SE_damage;
+                GetComponent<AudioSource>().Play();
+
                 StartCoroutine("InvincibleTime");
                 if(hp <= 1) {
                     throwingWait = 0.5f;
@@ -105,8 +116,7 @@ public class Mole : MonoBehaviour
                 }
 
                 if(hp <= 0) {
-                    Destroy(gameObject);
-                    SceneManager.LoadScene( "HappyEndMovie" );
+                    Action = ActionPart.Death;
                 }
             }
         }
@@ -175,7 +185,14 @@ public class Mole : MonoBehaviour
 
     void DeathAction()
     {
-        Destroy(gameObject);
+        StartCoroutine( "Dead" );
+        GameObject Explosion = ( GameObject ) Resources.Load( "Prefabs/explosion" );
+        var pos = transform.position;
+        if(UnityEngine.Random.Range(0, 10) == 0 ) {
+            GetComponent<AudioSource>().clip = SE_death;
+            GetComponent<AudioSource>().Play();
+            Instantiate( Explosion, new Vector3( pos.x + UnityEngine.Random.Range( -0.5f, 0.5f ), pos.y + UnityEngine.Random.Range( -0.5f, 0.5f ) ), Quaternion.identity );
+        }
     }
 
     void Rush() {
@@ -209,8 +226,14 @@ public class Mole : MonoBehaviour
         }
     }
 
-    private void OnBecameVisible() {
+    void OnBecameVisible() {
         Action = ActionPart.Raid;
+        if ( onceLoad == false ) {
+            var bgmAudio = Camera.main.GetComponent<AudioSource>();
+            bgmAudio.clip = bossBgm;
+            onceLoad = true;
+            bgmAudio.Play();
+        }
     }
 
     IEnumerator InvincibleTime() {
@@ -243,5 +266,11 @@ public class Mole : MonoBehaviour
             rigidbody.velocity = velocity;
             wait = false;
         }
+    }
+
+    IEnumerator Dead () {
+        yield return new WaitForSeconds( 5.0f );
+        Destroy( gameObject );
+        SceneManager.LoadScene( "HappyEndMovie" );
     }
 }

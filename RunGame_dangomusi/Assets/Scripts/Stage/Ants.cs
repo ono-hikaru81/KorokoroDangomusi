@@ -30,6 +30,10 @@ public class Ants : MonoBehaviour {
     Vector2 vec;
 
     Rigidbody2D rigidbody;
+    
+    public AudioClip SE_death;
+
+    SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start() {
@@ -80,17 +84,23 @@ public class Ants : MonoBehaviour {
 
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player") {
-            if (player.RotationMode == true) {
-                Action = ActionPart.Death;
+        if ( tag == "Enemy" ) {
+            if ( collision.gameObject.tag == "Player" ) {
+                if ( player.RotationMode == true ) {
+                    GetComponent<AudioSource>().clip = SE_death;
+                    GetComponent<AudioSource>().Play();
+                    tag = "Dead";
+                    GetComponent<BoxCollider2D>().isTrigger = true;
+                    Action = ActionPart.Death;
+                }
             }
-        }
 
-        if (collision.gameObject.tag == "Enemy") {
-            speed_x *= -1;
-            var scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
+            if ( collision.gameObject.tag == "Enemy" ) {
+                speed_x *= -1;
+                var scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+            }
         }
     }
 
@@ -108,7 +118,11 @@ public class Ants : MonoBehaviour {
 
     void DeathAction()
     {
-        Destroy(gameObject);
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.color = new Color( sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a - 0.01f );
+        if(sprite.color.a < 0 ) {
+            Destroy( gameObject );
+        }
     }
 
     // カメラの範囲内に入ったときに攻撃パートに切り替える
