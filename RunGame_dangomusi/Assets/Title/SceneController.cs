@@ -84,7 +84,7 @@ namespace RunGame.Title
                 // 選択中のボタンのみ拡大
                 if (index == selectedIndex)
                 {
-                    buttons[index].localScale = new Vector3(1.3f, 1.3f, 1);
+                    buttons[index].localScale = new Vector3(1.15f, 1.15f, 1);
                 }
                 else
                 {
