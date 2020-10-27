@@ -104,6 +104,7 @@ MonoBehaviour:
   SE_damage: {fileID: 8300000, guid: b70e62f8069c46744b230d579af22f3c, type: 3}
   SE_death: {fileID: 8300000, guid: 96cf2ceb5fc9a7147861eb69909f132f, type: 3}
   Action: 0
+  takeDamage: {fileID: 21300000, guid: e118cee1c9fd032459902f8a844b7251, type: 3}
   invincible: 0
   bossBgm: {fileID: 8300000, guid: 219e58df4487d3945b7892673224186c, type: 3}
 --- !u!61 &5829276022688315138

@@ -80,6 +80,7 @@ public class Spider : MonoBehaviour
                     GetComponent<AudioSource>().clip = SE_death;
                     GetComponent<AudioSource>().Play();
                     tag = "Dead";
+                    GetComponent<Animator>().SetBool( "isDead", true );
                     GetComponent<BoxCollider2D>().isTrigger = true;
                     Action = ActionPart.Death;
                 }

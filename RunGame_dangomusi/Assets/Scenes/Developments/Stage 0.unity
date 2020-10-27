@@ -150,6 +150,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.925
       objectReference: {fileID: 0}
+    - target: {fileID: 215647222317832760, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 215647222317832761, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -415,6 +420,11 @@ PrefabInstance:
       propertyPath: bossBgm
       value: 
       objectReference: {fileID: 8300000, guid: 219e58df4487d3945b7892673224186c, type: 3}
+    - target: {fileID: 3478543828559060008, guid: d3b9b63ebeb4454488fc595330aba666,
+        type: 3}
+      propertyPath: hp
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3478543828559060010, guid: d3b9b63ebeb4454488fc595330aba666,
         type: 3}
       propertyPath: m_GravityScale
@@ -19104,6 +19114,11 @@ PrefabInstance:
       propertyPath: normalStageBgm
       value: 
       objectReference: {fileID: 8300000, guid: e574b0690f217fb43b672d2025e6c70b, type: 3}
+    - target: {fileID: 1310127157688456020, guid: bda2c6f0cc7935b4c8048003a8082436,
+        type: 3}
+      propertyPath: gameOverBgm
+      value: 
+      objectReference: {fileID: 8300000, guid: e50b69303d3b5044d93a5ab0a73cf563, type: 3}
     - target: {fileID: 1310127157688456021, guid: bda2c6f0cc7935b4c8048003a8082436,
         type: 3}
       propertyPath: m_LocalPosition.x

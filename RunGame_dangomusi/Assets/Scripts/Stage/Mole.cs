@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
@@ -48,6 +49,8 @@ public class Mole : MonoBehaviour
 
     Rigidbody2D rigidbody;
     BoxCollider2D boxCollider;
+
+    public Sprite takeDamage;
 
     int stopTimer = 0;
     Vector2 vec;
@@ -108,6 +111,8 @@ public class Mole : MonoBehaviour
                 GetComponent<AudioSource>().clip = SE_damage;
                 GetComponent<AudioSource>().Play();
 
+                GetComponent<Animator>().SetBool( "takeDamage", true );
+
                 StartCoroutine("InvincibleTime");
                 if(hp <= 1) {
                     throwingWait = 0.5f;
@@ -150,7 +155,7 @@ public class Mole : MonoBehaviour
 
     void WaitAction()
     {
-
+        GetComponent<SpriteRenderer>().sprite = takeDamage;
     }
 
     void RaidAction()
@@ -240,6 +245,7 @@ public class Mole : MonoBehaviour
         invincible = true;
         Action = ActionPart.Wait;
         yield return new WaitForSeconds(3.0f);
+        GetComponent<Animator>().SetBool( "takeDamage", false );
         Action = ActionPart.Raid;
         invincible = false;
     }
