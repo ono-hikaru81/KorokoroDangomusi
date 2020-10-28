@@ -36,6 +36,9 @@ namespace RunGame.Stage
         // 無敵判定
         public bool invincible = false;
 
+        // スタミナゲージ判定
+        public bool isStamina = true;
+
         /// <summary>
         /// プレイ中の場合はtrue、ステージ開始前またはゲームオーバー時にはfalse
         /// </summary>
@@ -175,10 +178,11 @@ namespace RunGame.Stage
             }
 
             // '下'キーが押し下げられている場合はダッシュ処理(コロコロモード)
-            if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f)
+            if (Input.GetKey(KeyCode.DownArrow) && stamina > 0.0f && isStamina == true)
             {
                 // スタミナが減少
-                stamina -= Time.deltaTime * 2;
+                    stamina -= Time.deltaTime * 2;
+                
                 // スタミナゲージ更新
                 UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
                 // x軸方向の移動
@@ -196,14 +200,24 @@ namespace RunGame.Stage
                 if (!RotationMode) {
                     RotationMode = true;
                 }
+
+                if(stamina <= 0.0f)
+                {
+                    isStamina = false;        
+                }
             }
             // '下'キーが押されていないかつスタミナが減少しているときは回復する
-            else if (Input.GetKey(KeyCode.DownArrow) == false && stamina < 10.0f)
+            else if (stamina < 10.0f)
             {
                 RotationMode = false;
                 stamina += Time.deltaTime * 2;
                 // スタミナゲージ更新
                 UiStaminaGaugeObject.GetComponent<StaminaGauge>().UpdateGauge(stamina);
+
+                if (stamina >= 10.0f)
+                {
+                    isStamina = true;
+                }
             }
             else
             {
