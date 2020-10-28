@@ -24,7 +24,9 @@ public class Needle : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.tag == "Player" || collider.tag == "Grounds") {
+        if(collider.tag == "Player" ||
+           collider.tag == "Grounds" ||
+           collider.tag == "Wall") {
             Destroy(gameObject);
         }
     }

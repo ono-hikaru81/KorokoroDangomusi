@@ -52,9 +52,6 @@ public class Mole : MonoBehaviour
 
     public Sprite takeDamage;
 
-    int stopTimer = 0;
-    Vector2 vec;
-
     public bool invincible = false;
 
     float throwingWait = 1.0f;
@@ -69,7 +66,6 @@ public class Mole : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        vec = transform.position;
         boxCollider = GetComponent<BoxCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
@@ -126,30 +122,12 @@ public class Mole : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Enemy") {
+        if ( collision.gameObject.tag == "Wall" ||
+             collision.gameObject.tag == "Enemy" ) {
             speed_x *= -1;
             var scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
-        }
-    }
-
-    private void FixedUpdate() {
-        if (invincible == false && wait == false) {
-            if (vec.x == transform.position.x) {
-                stopTimer++;
-                if (stopTimer >= 5) {
-                    stopTimer = 0;
-                    speed_x *= -1;
-                    var scale = transform.localScale;
-                    scale.x *= -1;
-                    transform.localScale = scale;
-                }
-            }
-            else {
-                stopTimer = 0;
-            }
-            vec = transform.position;
         }
     }
 
