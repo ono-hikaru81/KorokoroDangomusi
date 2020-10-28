@@ -64,8 +64,7 @@ public class Ants : MonoBehaviour {
         }
     }
 
-
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision ) {
         if ( tag == "Enemy" ) {
             if ( collision.gameObject.tag == "Player" ) {
                 if ( player.RotationMode == true ) {

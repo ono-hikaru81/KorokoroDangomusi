@@ -40,7 +40,7 @@ public class Mole : MonoBehaviour
     LookingDirection LDirection = LookingDirection.Left;
 
     // モグラの速度
-    float speed_x = 4.0f;
+    public float speed_x = 4.0f;
     float speed_y = 0.0f;
     float speed_z = 0.0f;
 
@@ -50,12 +50,10 @@ public class Mole : MonoBehaviour
     Rigidbody2D rigidbody;
     BoxCollider2D boxCollider;
 
-    public Sprite takeDamage;
-
     public bool invincible = false;
 
-    float throwingWait = 1.0f;
-    float burrowsWait = 3.0f;
+    public float throwingWait = 1.0f;
+    public float burrowsWait = 3.0f;
 
     bool wait = false;
 
@@ -96,32 +94,7 @@ public class Mole : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (player.RotationMode == true && invincible == false)
-            {
-                hp -= 1;
-
-                GetComponent<AudioSource>().clip = SE_damage;
-                GetComponent<AudioSource>().Play();
-
-                GetComponent<Animator>().SetBool( "takeDamage", true );
-
-                StartCoroutine("InvincibleTime");
-                if(hp <= 1) {
-                    throwingWait = 0.5f;
-                    speed_x *= 1.5f;
-                    burrowsWait = 1.0f;
-                }
-
-                if(hp <= 0) {
-                    Action = ActionPart.Death;
-                }
-            }
-        }
-
+    void OnCollisionEnter2D ( Collision2D collision ) { 
         if ( collision.gameObject.tag == "Wall" ||
              collision.gameObject.tag == "Enemy" ) {
             speed_x *= -1;
@@ -133,7 +106,7 @@ public class Mole : MonoBehaviour
 
     void WaitAction()
     {
-        GetComponent<SpriteRenderer>().sprite = takeDamage;
+
     }
 
     void RaidAction()

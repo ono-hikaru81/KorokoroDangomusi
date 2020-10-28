@@ -276,7 +276,7 @@ namespace RunGame.Stage
         /// 呼び出されます。
         /// </summary>
         /// <param name="collider">侵入したトリガー</param>
-        private void OnTriggerEnter2D(Collider2D collider)
+        void OnTriggerEnter2D(Collider2D collider)
         {
             // 敵の当たり判定
             if (collider.tag == "Enemy" || collider.tag == "Trap" || collider.tag == "Boss")
@@ -309,7 +309,7 @@ namespace RunGame.Stage
 
         private void OnCollisionEnter2D(Collision2D collision) {
             // 敵の当たり判定
-            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Trap") {
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Boss" ) {
                 if (RotationMode == false) {
                     IsActive = false;
                     SceneController.Instance.GameOver();
