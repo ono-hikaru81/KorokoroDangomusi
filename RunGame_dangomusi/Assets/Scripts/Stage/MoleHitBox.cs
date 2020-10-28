@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class MoleHitBox : MonoBehaviour {
 
@@ -12,6 +11,15 @@ public class MoleHitBox : MonoBehaviour {
     void Start () {
         player = GameObject.Find( "Player" ).GetComponent<Player>();
         mole = GameObject.Find( "Mole" ).GetComponent<Mole>();
+    }
+
+    void Update () {
+        if(mole.invincible == true ) {
+            GetComponent<CircleCollider2D>().isTrigger = true;
+        }
+        else {
+            GetComponent<CircleCollider2D>().isTrigger = false;
+        }
     }
 
     void OnCollisionEnter2D ( Collision2D collision ) {

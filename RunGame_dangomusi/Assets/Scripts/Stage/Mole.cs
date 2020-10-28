@@ -114,7 +114,7 @@ public class Mole : MonoBehaviour
             case 1:
             case 2:
                 // 5秒ごとにランダムで投擲攻撃or突き攻撃を行う
-                if (motiontimer >= 5.0f) {
+                if (motiontimer >= 7.0f) {
                     int temp = UnityEngine.Random.Range(0, 2);
                     if (temp == 1) {
                         Burrows();
@@ -217,7 +217,7 @@ public class Mole : MonoBehaviour
             transform.position = position;
 
             var velocity = rigidbody.velocity;
-            velocity.y = 20;
+            velocity.y = 15;
             rigidbody.velocity = velocity;
             wait = false;
         }

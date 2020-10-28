@@ -37,7 +37,7 @@ public class MovieManager : MonoBehaviour {
         else if ( endFadeOut == false ) {
             if ( FadeOut() == true ) {
                 endFadeOut = true;
-                SceneManager.LoadScene( "Credit" );
+                SceneManager.LoadScene( "Title" );
             }
         }
         else {
