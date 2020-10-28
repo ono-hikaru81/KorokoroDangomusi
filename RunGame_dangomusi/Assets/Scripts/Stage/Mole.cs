@@ -200,17 +200,22 @@ public class Mole : MonoBehaviour
     }
 
     IEnumerator ThrowingCoroutines() {
-        yield return new WaitForSeconds(throwingWait);
+        GetComponent<Animator>().SetBool("isThrow", true);
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Animator>().SetBool("isThrow", false);
         GameObject Dirt = (GameObject)Resources.Load("Prefabs/Dirt");
         var pos = transform.position;
         Instantiate(Dirt, new Vector3(pos.x, pos.y + 1), Quaternion.identity);
-        wait = false;
+        wait = false; 
     }
 
     IEnumerator BurrowsCoroutines() {
-        yield return new WaitForSeconds(burrowsWait);
+        GetComponent<Animator>().SetBool("isBurrow_In", true);
+        yield return new WaitForSeconds(1.0f);
+        GetComponent<Animator>().SetBool("isBurrow_In", false);
         // プレイヤーのx座標に移動して飛び出す
         if (transform.position.y < pos.y - 5) {
+            GetComponent<Animator>().SetBool("isBurrow_Out", true);
             var position = transform.position;
             position.x = player.transform.position.x;
             position.y = pos.y - 3;
@@ -220,6 +225,7 @@ public class Mole : MonoBehaviour
             velocity.y = 15;
             rigidbody.velocity = velocity;
             wait = false;
+            GetComponent<Animator>().SetBool("isBurrow_Out", false);
         }
     }
 
