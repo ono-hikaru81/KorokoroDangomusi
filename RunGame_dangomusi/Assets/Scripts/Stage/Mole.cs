@@ -211,20 +211,23 @@ public class Mole : MonoBehaviour
 
     IEnumerator BurrowsCoroutines() {
         GetComponent<Animator>().SetBool("isBurrow_In", true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         GetComponent<Animator>().SetBool("isBurrow_In", false);
+        yield return new WaitForSeconds(2.5f);
         // プレイヤーのx座標に移動して飛び出す
         if (transform.position.y < pos.y - 5) {
-            GetComponent<Animator>().SetBool("isBurrow_Out", true);
+            
             var position = transform.position;
             position.x = player.transform.position.x;
             position.y = pos.y - 3;
             transform.position = position;
+            GetComponent<Animator>().SetBool("isBurrow_Out", true);
 
             var velocity = rigidbody.velocity;
             velocity.y = 15;
             rigidbody.velocity = velocity;
             wait = false;
+            yield return new WaitForSeconds(0.3f);
             GetComponent<Animator>().SetBool("isBurrow_Out", false);
         }
     }
