@@ -15,4 +15,4 @@ Unityを使用した2Dアクションゲーム。
 
 ## 実行環境
 Unity 2020.1.3f1
-Microsoft Visual Studio Community 2019 Version 16.11.17
+Visual Studio 2019 バージョン 16.0.3
